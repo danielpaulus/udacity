@@ -4,6 +4,7 @@ from collections import OrderedDict
 
 from simulator import Simulator
 
+
 class TrafficLight(object):
     """A traffic light that switches periodically."""
 
