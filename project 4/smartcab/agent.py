@@ -157,6 +157,7 @@ class LearningAgent(Agent):
         self.learner=Q_Learner()
         self.mapper= StateMapper(self.learner)                        
         self.actionChooser= QValueRandomMixActionChooser(self.learner)
+        self.negative_rewards=0
 
     def reset(self, destination=None):
         self.learner.prior_state=None
@@ -179,7 +180,9 @@ class LearningAgent(Agent):
         action= self.actionChooser.chooseAction()
         learner.action=action
         # Execute action and get reward
-        learner.reward = self.env.act(self, action)        
+        learner.reward = self.env.act(self, action)
+        if learner.reward<0:
+            self.negative_rewards+=learner.reward
         self.next_waypoint = self.planner.next_waypoint()  # from route planner, also displayed by simulator
         location = self.env.agent_states[self]["location"] 
         destination = self.env.agent_states[self]["destination"]
@@ -224,14 +227,14 @@ successrate: 0.96141 for params:[0.19, 0.25, 0.05]
         a.actionChooser.epsilon=paramset[2]
 
 
-        e.set_primary_agent(a, enforce_deadline=True)  # specify agent to track
+        e.set_primary_agent(a, enforce_deadline=False)  # specify agent to track
         # NOTE: You can set enforce_deadline=False while debugging to allow longer trials
     
         # Now simulate it
         sim = Simulator(e, update_delay=0, display=False)  # create simulator (uses pygame when display=True, if available)
         # NOTE: To speed up simulation, reduce update_delay and/or set display=False
     
-        sim.run(n_trials=100000)  # run for a specified number of trials
+        sim.run(n_trials=100)  # run for a specified number of trials
         # NOTE: To quit midway, press Esc or close pygame window, or hit Ctrl+C on the command-line
         
         #save the matrix to a file        
@@ -242,7 +245,8 @@ successrate: 0.96141 for params:[0.19, 0.25, 0.05]
         f = open('q_matrix.txt', 'w')    
         matrix.tofile(f, ";")
         f.close()
-        print "successrate: {} for params:{}".format(a.successes/100000.0, paramset)
+        print "successrate: {} for params:{}".format(a.successes/100.0, paramset)
+        print "negative accumulated rewards:{}".format(a.negative_rewards)
 
 if __name__ == '__main__':
     run()
