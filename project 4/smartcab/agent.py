@@ -85,7 +85,7 @@ class Q_Learner:
         return self.q_matrix.matrix[state, row]
         
     def maxFutureAction(self):
-        state=self.current_state[0]
+        state=self.outcome_state[0]
         row = self.q_matrix.matrix[state,:]
         index= np.argmax(row)        
         return index
@@ -120,16 +120,17 @@ class QValueRandomMixActionChooser(ActionChooser):
     def __init__(self, qlearner):        
         self.qlearner=qlearner
         self.epsilon= 0.1
-        
+        self.first=True
     def chooseAction(self):
        rnd= np.random.random_sample()
+       if self.first:
+           self.first=False
+           rnd=-1
        if rnd>self.epsilon:
            index= self.qlearner.maxFutureAction()
            return self.qlearner.q_matrix.possible_actions[index]
        else:
            return self.qlearner.q_matrix.possible_actions[np.random.randint(0,4)]
-        
-       
         
 
 class LearningAgent(Agent):
@@ -151,14 +152,17 @@ class LearningAgent(Agent):
         # TODO: Initialize any additional variables here
 
     def reset(self, destination=None):
+        self.learner.current_state=None
+        self.actionChooser.first=True
         self.planner.route_to(destination)
+        
         # TODO: Prepare for a new trip; reset any variables here, if required
 
     def update(self, t):
         # Gather inputs
         learner= self.learner        
         self.next_waypoint = self.planner.next_waypoint()  # from route planner, also displayed by simulator
-        print "next waypoint is:{}".format(self.next_waypoint)
+        #print "next waypoint is:{}".format(self.next_waypoint)
         inputs = self.env.sense(self)
         deadline = self.env.get_deadline(self)
         if learner.current_state==None:
@@ -172,6 +176,10 @@ class LearningAgent(Agent):
         learner.action=action
         # Execute action and get reward
         learner.reward = self.env.act(self, action)        
+        self.next_waypoint = self.planner.next_waypoint()  # from route planner, also displayed by simulator
+        #print "next waypoint is:{}".format(self.next_waypoint)
+        print "wp{}".format(self.next_waypoint)        
+        inputs = self.env.sense(self)
         learner.outcome_state= self.mapper.mapDataToState(self.next_waypoint,inputs,deadline)
 
         location = self.env.agent_states[self]["location"] 
@@ -192,14 +200,14 @@ def run():
     e = Environment()  # create environment (also adds some dummy traffic)
     a = e.create_agent(LearningAgent)  # create agent
     
-    e.set_primary_agent(a, enforce_deadline=False)  # specify agent to track
+    e.set_primary_agent(a, enforce_deadline=True)  # specify agent to track
     # NOTE: You can set enforce_deadline=False while debugging to allow longer trials
 
     # Now simulate it
     sim = Simulator(e, update_delay=0, display=False)  # create simulator (uses pygame when display=True, if available)
     # NOTE: To speed up simulation, reduce update_delay and/or set display=False
 
-    sim.run(n_trials=5000)  # run for a specified number of trials
+    sim.run(n_trials=100)  # run for a specified number of trials
     # NOTE: To quit midway, press Esc or close pygame window, or hit Ctrl+C on the command-line
     matrix= a.learner.q_matrix.matrix
     f = open('q_matrix.npy', 'w')    
@@ -208,7 +216,7 @@ def run():
     f = open('q_matrix.txt', 'w')    
     matrix.tofile(f, ";")
     f.close()
-    print "successrate: {}".format(successes/5000.0)
+    print "successrate: {}".format(successes/100.0)
 
 if __name__ == '__main__':
     run()
