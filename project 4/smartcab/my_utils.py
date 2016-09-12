@@ -2,22 +2,24 @@
 """
 Created on Sun Sep 11 17:07:03 2016
 
-@author: osboxes
+@author: daniel
 """
 
 import numpy as np
 
 
 
-#these arrays define the state space, which results in a total of 384 combinations
-next_waypoint=['wp_left', 'wp_right', 'wp_forward']
+#these arrays will be used to define the state space
+#by creating the cartesian product which will result in a total of 512 combinations
+next_waypoint=['wp_left', 'wp_right', 'wp_forward','wp_none']
 traffic_light=['green','red']
 oncoming=['on_forward','on_left','on_right','on_none']
 left=['lf_forward','lf_left','lf_right','lf_none']
 right=['rg_forward','rg_left','rg_right','rg_none']
 
 
-def form_input_space():
+#helper method
+def form_state_space():
     result= cartesian((next_waypoint,traffic_light,oncoming,left,right))
     print "Created state space with {} entries.".format(len(result))
     return result
