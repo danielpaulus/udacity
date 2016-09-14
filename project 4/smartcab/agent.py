@@ -172,6 +172,7 @@ class LearningAgent(Agent):
         deadline = self.env.get_deadline(self)
         if learner.prior_state==None:
             learner.prior_state= self.mapper.mapDataToState(self.next_waypoint,inputs,deadline)           
+            self.state=learner.prior_state[1]
         else:        
             learner.update()
             learner.prior_state=learner.current_state                
@@ -188,7 +189,7 @@ class LearningAgent(Agent):
         destination = self.env.agent_states[self]["destination"]
         inputs = self.env.sense(self)
         learner.current_state= self.mapper.mapDataToState(self.next_waypoint,inputs,deadline)
-        
+        self.state=learner.current_state[1]
         #keep track of how often we were successful for later evaluation        
         if location==destination:
             self.successes= self.successes+1
