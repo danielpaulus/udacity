@@ -42,7 +42,7 @@ class Reporter(object):
                 plt.ion()
             self.plot()
 
-        print "Reporter.__init__(): Initialized with metrics: {}".format(metrics)  # [debug]
+        #print "Reporter.__init__(): Initialized with metrics: {}".format(metrics)  # [debug]
 
     def collect(self, name, x, y):
         if not name in self.metrics:

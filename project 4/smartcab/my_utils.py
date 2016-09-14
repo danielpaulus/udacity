@@ -21,7 +21,7 @@ right=['rg_forward','rg_left','rg_right','rg_none']
 #helper method
 def form_state_space():
     result= cartesian((next_waypoint,traffic_light,oncoming,left,right))
-    print "Created state space with {} entries.".format(len(result))
+    #print "Created state space with {} entries.".format(len(result))
     return result
 
 

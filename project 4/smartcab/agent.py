@@ -200,13 +200,7 @@ def run():
     #learning rate, discount, exploration value  
     #i could have written a loop to generate these, something smart like
     #grid search from sklearn but.. you know..sometimes.. ;-)  
-    params=[ 
-            [0.136,0.2,0.05],
-            [0.19,0.25,0.05],
-            [0.19,0.05,0.05],
-            [0.2,0.1,0.05],
-            [0.1,0,0.05]
-            ]
+    
     """final parameter set:
 after running 100,000 trials I got an accuracy of 0.96141.
 I think that is quite good. 
@@ -215,6 +209,14 @@ successrate: 0.96141 for params:[0.19, 0.25, 0.05]
     params=[[
         0.19, 0.25, 0.05
     ]]
+    
+    params=[]
+    for i in range(0,10):
+        p=[i/10.0,0.8,0]
+        params.append(p)
+
+    
+    
     for paramset in params:
         # Set up environment and agent
         #learning rate, discount, exploration value    

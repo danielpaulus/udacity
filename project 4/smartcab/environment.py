@@ -145,7 +145,7 @@ class Environment(object):
             agent_deadline = self.agent_states[self.primary_agent]['deadline']
             if agent_deadline <= self.hard_time_limit:
                 self.done = True
-                print "Environment.step(): Primary agent hit hard time limit ({})! Trial aborted.".format(self.hard_time_limit)
+                #print "Environment.step(): Primary agent hit hard time limit ({})! Trial aborted.".format(self.hard_time_limit)
             elif self.enforce_deadline and agent_deadline <= 0:
                 self.done = True
                 #print "Environment.step(): Primary agent ran out of time! Trial aborted."
