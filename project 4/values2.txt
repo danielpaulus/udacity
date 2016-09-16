@@ -1,0 +1,86 @@
+successrate: 0.9524 for params:[0.05, 0, 0.05]
+successrate: 0.9622 for params:[0.1, 0, 0.05]
+successrate: 0.9498 for params:[0.15, 0, 0.05]
+successrate: 0.9448 for params:[0.2, 0, 0.05]
+successrate: 0.9492 for params:[0.25, 0, 0.05]
+successrate: 0.9556 for params:[0.3, 0, 0.05]
+successrate: 0.9262 for params:[0.35, 0, 0.05]
+successrate: 0.9524 for params:[0.05, 0.1, 0.05]
+successrate: 0.9598 for params:[0.1, 0.1, 0.05]
+successrate: 0.9558 for params:[0.15, 0.1, 0.05]
+successrate: 0.961 for params:[0.2, 0.1, 0.05]
+successrate: 0.9544 for params:[0.25, 0.1, 0.05]
+successrate: 0.9546 for params:[0.3, 0.1, 0.05]
+successrate: 0.9354 for params:[0.35, 0.1, 0.05]
+successrate: 0.9444 for params:[0.05, 0.2, 0.05]
+successrate: 0.9444 for params:[0.1, 0.2, 0.05]
+successrate: 0.959 for params:[0.15, 0.2, 0.05]
+successrate: 0.947 for params:[0.2, 0.2, 0.05]
+successrate: 0.951 for params:[0.25, 0.2, 0.05]
+successrate: 0.9434 for params:[0.3, 0.2, 0.05]
+successrate: 0.934 for params:[0.35, 0.2, 0.05]
+
+
+
+successrate: 0.947 for params:[0.06, 0, 0.05]
+successrate: 0.9564 for params:[0.07, 0, 0.05]
+successrate: 0.951 for params:[0.08, 0, 0.05]
+successrate: 0.9488 for params:[0.09, 0, 0.05]
+successrate: 0.9504 for params:[0.11, 0, 0.05]
+successrate: 0.9548 for params:[0.12, 0, 0.05]
+successrate: 0.9542 for params:[0.13, 0, 0.05]
+successrate: 0.9564 for params:[0.14, 0, 0.05]
+successrate: 0.955 for params:[0.15, 0, 0.05]
+successrate: 0.9536 for params:[0.17, 0.1, 0.05]
+successrate: 0.9498 for params:[0.18, 0.1, 0.05]
+successrate: 0.962 for params:[0.19, 0.1, 0.05]
+successrate: 0.9602 for params:[0.21, 0.1, 0.05]
+successrate: 0.9524 for params:[0.22, 0.1, 0.05]
+successrate: 0.9568 for params:[0.23, 0.1, 0.05]
+successrate: 0.9486 for params:[0.24, 0.1, 0.05]
+successrate: 0.9516 for params:[0.25, 0.1, 0.05]
+successrate: 0.9538 for params:[0.11, 0.2, 0.05]
+successrate: 0.9528 for params:[0.12, 0.2, 0.05]
+successrate: 0.9536 for params:[0.13, 0.2, 0.05]
+successrate: 0.9616 for params:[0.14, 0.2, 0.05]
+successrate: 0.9566 for params:[0.15, 0.2, 0.05]
+successrate: 0.9484 for params:[0.16, 0.2, 0.05]
+successrate: 0.9518 for params:[0.17, 0.2, 0.05]
+successrate: 0.9584 for params:[0.18, 0.2, 0.05]
+successrate: 0.9514 for params:[0.19, 0.2, 0.05]
+
+-------------------------iter 2
+
+
+successrate: 0.962 for params:[0.19, 0.1, 0.05]
+successrate: 0.961 for params:[0.2, 0.1, 0.05]
+successrate: 0.9602 for params:[0.21, 0.1, 0.05]
+
+
+successrate: 0.9616 for params:[0.14, 0.2, 0.05]
+
+successrate: 0.96 for params:[0.136, 0.2, 0.05]
+
+------------------------iter 3
+
+successrate: 0.96 for params:[0.136, 0.2, 0.05]
+successrate: 0.9632 for params:[0.19, 0.25, 0.05]
+successrate: 0.966 for params:[0.19, 0.05, 0.05]
+successrate: 0.961 for params:[0.2, 0.1, 0.05]
+successrate: 0.9622 for params:[0.1, 0, 0.05]
+
+------------------------mega iter
+successrate: 0.9565 for params:[0.136, 0.2, 0.05]
+successrate: 0.95655 for params:[0.19, 0.25, 0.05]
+successrate: 0.95975 for params:[0.19, 0.05, 0.05]
+successrate: 0.95225 for params:[0.2, 0.1, 0.05]
+successrate: 0.96055 for params:[0.1, 0, 0.05]
+
+-------------------------------- final
+successrate: 0.953 for params:[0.19, 0.05, 0.05]
+successrate: 0.95 for params:[0.19, 0.25, 0.05]
+
+
+---------------------------------final 100000 iterations
+successrate: 0.96141 for params:[0.19, 0.25, 0.05]
+
