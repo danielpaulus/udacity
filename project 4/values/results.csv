@@ -1,0 +1,14 @@
+iteration;state;action;reward;random move
+91;['wp_forward' 'red' 'on_none' 'lf_none' 'rg_none'];forward;-1.0;False
+92;['wp_left' 'green' 'on_none' 'lf_none' 'rg_none'];right;-0.5;True
+94;['wp_right' 'red' 'on_none' 'lf_none' 'rg_none'];left;-1.0;True
+95;['wp_forward' 'green' 'on_none' 'lf_none' 'rg_none'];right;-0.5;False
+95;['wp_forward' 'red' 'on_none' 'lf_none' 'rg_none'];forward;-1.0;False
+96;['wp_left' 'green' 'on_none' 'lf_none' 'rg_none'];right;-0.5;True
+97;['wp_left' 'green' 'on_none' 'lf_none' 'rg_none'];right;-0.5;True
+98;['wp_right' 'red' 'on_none' 'lf_none' 'rg_none'];forward;-1.0;True
+98;['wp_forward' 'red' 'on_none' 'lf_none' 'rg_none'];forward;-1.0;False
+98;['wp_forward' 'red' 'on_none' 'lf_none' 'rg_none'];forward;-1.0;False
+99;['wp_right' 'red' 'on_none' 'lf_none' 'rg_none'];forward;-0.5;True
+99;['wp_forward' 'red' 'on_none' 'lf_none' 'rg_none'];forward;-1.0;False
+100;['wp_right' 'red' 'on_none' 'lf_none' 'rg_none'];left;-0.5;False
