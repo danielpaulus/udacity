@@ -3,6 +3,9 @@
 Created on Thu Nov 24 11:55:36 2016
 
 @author: ganjalf
+
+THIS CODE IS DEPRECATED, 
+it is now in the jupyter notebook for clustering
 """
 
 import pandas as pd
@@ -35,4 +38,4 @@ dff=pd.concat([df,dfn],axis=1)
 #print ast.literal_eval((df['edge_types'][0]))
 #print (df['edge_types'][0])
 #df1= pd.get_dummies(df)
-dff.to_csv("test.csv")
+#dff.to_csv("test.csv")
