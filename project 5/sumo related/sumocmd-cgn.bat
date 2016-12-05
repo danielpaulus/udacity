@@ -1,0 +1,1 @@
+sumo -c E:\TAPASCologne-0.24.0\cologne.sumocfg  --duration-log.statistics --output-prefix MyRun2_
