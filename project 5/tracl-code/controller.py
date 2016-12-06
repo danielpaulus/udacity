@@ -21,6 +21,8 @@ while step < 1000:
    phase= traci.trafficlights.getPhase(TLSID)   
    traci.trafficlights.setPhase(TLSID, 0)
    lanes= traci.trafficlights.getControlledLanes(TLSID)
+   for lane in lanes:
+       print lane
    print phase
    #if traci.inductionloop.getLastStepVehicleNumber("0") > 0:
     #   traci.trafficlights.setRedYellowGreenState("0", "GrGr")
