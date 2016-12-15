@@ -18,16 +18,16 @@ from rl.random import OrnsteinUhlenbeckProcess
 from rl.core import Processor
 
 """portable config"""
-#sys.path.append('e:\\Sumo\\tools')
-#os.environ["SUMO_HOME"]="E:\\Sumo"
-#sumoBinary = "E:\\Sumo\\bin\\sumo-gui.exe"
-#sumoCmd = [sumoBinary, "-c", "E:\\rilsa\\run.sumo.cfg"]
+sys.path.append('e:\\Sumo\\tools')
+os.environ["SUMO_HOME"]="E:\\Sumo"
+sumoBinary = "E:\\Sumo\\bin\\sumo-gui.exe"
+sumoCmd = [sumoBinary, "-c", "E:\\rilsa\\run.sumo.cfg"]
 
 
 
 """Laptop config"""
-sumoBinary = "C:\\Program Files (x86)\\DLR\\Sumo\\bin\\sumo.exe"
-sumoCmd = [sumoBinary, "-c", "D:\\verkehr\\RiLSA_example4\\run.sumo.cfg"]
+#sumoBinary = "C:\\Program Files (x86)\\DLR\\Sumo\\bin\\sumo.exe"
+#sumoCmd = [sumoBinary, "-c", "D:\\verkehr\\RiLSA_example4\\run.sumo.cfg"]
 
 """interesting functions:
     gui: screenshot()
@@ -54,12 +54,12 @@ def extract_tl_ids(connection_list):
         tl_list.append( connection[2])
     return tl_list
         
-lust= import_datasets()
+#lust= import_datasets()
 
-tls= extract_tl_ids(lust.iloc[0])
-print tls
+#tls= extract_tl_ids(lust.iloc[0])
+#print tls
 #connections = dataset[5]==[from,to,tl,dir,state]
-if False:      
+if True:      
     TLSID= "0"
     while step < 1000:
        traci.simulationStep()
@@ -68,7 +68,8 @@ if False:
        current_simulation_time_ms=traci.simulation.getCurrentTime()
        print arrived_vehicles_in_last_step
        phase= traci.trafficlights.getPhase(TLSID)   
-       traci.trafficlights.setPhase(TLSID, 0)
+       traci.trafficlights.setRedYellowGreenState(TLSID, "grrrrrrrrrrr")
+       
        lanes= traci.trafficlights.getControlledLanes(TLSID)
        #for lane in lanes:
        #    print lane
