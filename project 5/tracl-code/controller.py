@@ -26,8 +26,8 @@ sumoCmd = [sumoBinary, "-c", "E:\\rilsa\\run.sumo.cfg"]
 
 
 """Laptop config"""
-#sumoBinary = "C:\\Program Files (x86)\\DLR\\Sumo\\bin\\sumo.exe"
-#sumoCmd = [sumoBinary, "-c", "D:\\verkehr\\RiLSA_example4\\run.sumo.cfg"]
+sumoBinary = "C:\\Program Files (x86)\\DLR\\Sumo\\bin\\sumo.exe"
+sumoCmd = [sumoBinary, "-c", "D:\\verkehr\\RiLSA_example4\\run.sumo.cfg"]
 
 """interesting functions:
     gui: screenshot()
@@ -71,6 +71,7 @@ if True:
        traci.trafficlights.setRedYellowGreenState(TLSID, "grrrrrrrrrrr")
        
        lanes= traci.trafficlights.getControlledLanes(TLSID)
+       print len(lanes)
        #for lane in lanes:
        #    print lane
        print phase

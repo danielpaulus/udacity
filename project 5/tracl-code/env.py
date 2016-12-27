@@ -8,10 +8,13 @@ import numpy as np
 import pandas as pd
 import traci
 import ast
+import itertools
 # Note: the API of the `Env` and `Space` classes are taken from the OpenAI Gym implementation.
 # https://github.com/openai/gym/blob/master/gym/core.py
 
 #read: https://gym.openai.com/docs
+
+
 
 class Env(object):
     """portable config"""
@@ -39,6 +42,12 @@ class Env(object):
     reward_range = (-np.inf, np.inf)
     action_space = None
     observation_space = None
+    possible_actions=['r','g','G','y','o','O','u']
+    edges=[]
+    
+    def __init__(self, lanes):
+        self.lanes=lanes
+        self.action_space=list(itertools.permutations(self.possible_actions, lanes))
 
     def step(self, action):
         """Run one timestep of the environment's dynamics.
@@ -53,16 +62,42 @@ class Env(object):
         """
         TLSID= "0"        
         traci.simulationStep()
+        #read global info
         arrived_vehicles_in_last_step= traci.simulation.getArrivedNumber()
         departed_vehicles_in_last_step=traci.simulation.getDepartedNumber()
-        current_simulation_time_ms=traci.simulation.getCurrentTime()
-        print arrived_vehicles_in_last_step
-        phase= traci.trafficlights.getPhase(TLSID)   
-        traci.trafficlights.setPhase(TLSID, 0)
-        lanes= traci.trafficlights.getControlledLanes(TLSID)
+        current_simulation_time_ms=traci.simulation.getCurrentTime()      
+        vehicles_started_to_teleport= traci.simulation.getStartingTeleportNumber()
+        vehicles_ended_teleport= traci.simulation.getEndingTeleportNumber()
+        vehicles_still_expected= traci.simulation.getMinExpectedNumber()
+        traci.trafficlights.setRedYellowGreenState(TLSID, action)
+        observation=[arrived_vehicles_in_last_step,departed_vehicles_in_last_step,
+                    current_simulation_time_ms,vehicles_started_to_teleport,
+                    vehicles_ended_teleport,vehicles_still_expected]
+        
+        for e_id in self.edges:
+            edge_values=[
+            traci.edges.getWaitingTime(e_id),
+            traci.edges.getCO2Emission(e_id),
+            traci.edges.getCOEmission(e_id),
+            traci.edges.getHCEmission(e_id),
+            traci.edges.getPMxEmission(e_id),
+            traci.edges.getNOxEmission(e_id),
+            traci.edges.getFuelConsumption(e_id),
+            traci.edges.getLastStepMeanSpeed(e_id),
+            traci.edges.getLastStepOccupancy(e_id),
+            traci.edges.getLastStepLength(e_id),
+            traci.edges.getTraveltime(e_id),
+            traci.edges.getLastStepVehicleNumber(e_id),
+            traci.edges.getLastStepHaltingNumber(e_id)
+            ]
+            observation.extend(edge_values)
+            
+            
+        
         reward=1
         done= False        
         info= {"info": "none"}
+        
         return (observation, reward, done, info)
 
     def reset(self):
@@ -71,7 +106,12 @@ class Env(object):
         Returns:
             observation (object): the initial observation of the space. (Initial reward is assumed to be 0.)
         """
-        traci.start(sumoCmd) 
+        
+        traci.start(self.sumoCmd) 
+        lanes= traci.trafficlights.getControlledLanes(self.TLSID)
+        for lane in lanes:
+            self.edges.append(lane.getEdgeID())
+            
         lust= import_datasets()
         step = 0
         tl = traci.trafficlights
@@ -151,7 +191,8 @@ class Env(object):
         return tl_list
         
 
-
+e=Env(2)
+print e.action_space
 
 class Space(object):
     """Abstract model for a space that is used for the state and action spaces. This class has the
