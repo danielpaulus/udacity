@@ -4,36 +4,53 @@ Created on Thu Dec 15 12:30:15 2016
 
 @author: Daniel1Paulus
 """
+
+
+
+from __future__ import division
 import numpy as np
 import pandas as pd
-import traci
+
 import ast
 import itertools
+import sys
+import os
+from gym import spaces
+
+
+"""portable config"""
+# sys.path.append('e:\\Sumo\\tools')
+# os.environ["SUMO_HOME"]="E:\\Sumo"
+# sumoBinary = "E:\\Sumo\\bin\\sumo-gui.exe"
+# sumoCmd = [sumoBinary, "-c", "E:\\rilsa\\run.sumo.cfg"]
+
+
+
+"""Laptop config"""
+#sumoBinary = "C:\\Program Files (x86)\\DLR\\Sumo\\bin\\sumo.exe"
+#sumoCmd = [sumoBinary, "-c", "D:\\verkehr\\RiLSA_example4\\run.sumo.cfg"]
+
+
+import traci
 # Note: the API of the `Env` and `Space` classes are taken from the OpenAI Gym implementation.
 # https://github.com/openai/gym/blob/master/gym/core.py
 
-#read: https://gym.openai.com/docs
+# read: https://gym.openai.com/docs
 
+#os.environ["SUMO_HOME"] = "/usr/share/sumo"
 
+class FickDich(object):
+    """Ubuntu Config"""
+    # sys.path.append('/usr/share/sumo/tools')
 
-class Env(object):
-    """portable config"""
-    #sys.path.append('e:\\Sumo\\tools')
-    #os.environ["SUMO_HOME"]="E:\\Sumo"
-    #sumoBinary = "E:\\Sumo\\bin\\sumo-gui.exe"
-    #sumoCmd = [sumoBinary, "-c", "E:\\rilsa\\run.sumo.cfg"]
-    
-    
-    
-    """Laptop config"""
-    sumoBinary = "C:\\Program Files (x86)\\DLR\\Sumo\\bin\\sumo.exe"
-    sumoCmd = [sumoBinary, "-c", "D:\\verkehr\\RiLSA_example4\\run.sumo.cfg"]
-    
+    sumoBinary = "/usr/bin/sumo"
+    sumoCmd = [sumoBinary, "-c", "/home/ganjalf/sumo/rilsa/run.sumo.cfg"]
+
     """interesting functions:
         gui: screenshot()
             trackVehicle()
-    """    
-    
+    """
+
     """The abstract environment class that is used by all agents. This class has the exact
     same API that OpenAI Gym uses so that integrating with it is trivial. In contrast to the
     OpenAI Gym implementation, this class only defines the abstract methods without any actual
@@ -41,13 +58,20 @@ class Env(object):
     """
     reward_range = (-np.inf, np.inf)
     action_space = None
-    observation_space = None
-    possible_actions=['r','g','G','y','o','O','u']
-    edges=[]
-    
+    observation_space = spaces.Box(low=0,high=1000, shape=(1,19))
+
+    #spaces.Discrete(7) 0-6
+    possible_actions = ['r', 'g', 'G', 'y', 'o', 'O', 'u']
+    edges = []
+    TLSID = "0"
     def __init__(self, lanes):
-        self.lanes=lanes
-        self.action_space=list(itertools.permutations(self.possible_actions, lanes))
+        self.lanes = lanes
+        space_init=[]
+
+        for i in range(0,lanes):
+            space_init.append([0, 6])
+        action_space = spaces.MultiDiscrete(space_init)
+
 
     def step(self, action):
         """Run one timestep of the environment's dynamics.
@@ -60,45 +84,66 @@ class Env(object):
             done (boolean): whether the episode has ended, in which case further step() calls will return undefined results
             info (dict): contains auxiliary diagnostic information (helpful for debugging, and sometimes learning)
         """
-        TLSID= "0"        
+
         traci.simulationStep()
-        #read global info
-        arrived_vehicles_in_last_step= traci.simulation.getArrivedNumber()
-        departed_vehicles_in_last_step=traci.simulation.getDepartedNumber()
-        current_simulation_time_ms=traci.simulation.getCurrentTime()      
-        vehicles_started_to_teleport= traci.simulation.getStartingTeleportNumber()
-        vehicles_ended_teleport= traci.simulation.getEndingTeleportNumber()
-        vehicles_still_expected= traci.simulation.getMinExpectedNumber()
-        traci.trafficlights.setRedYellowGreenState(TLSID, action)
-        observation=[arrived_vehicles_in_last_step,departed_vehicles_in_last_step,
-                    current_simulation_time_ms,vehicles_started_to_teleport,
-                    vehicles_ended_teleport,vehicles_still_expected]
-        
+        # read global info
+        arrived_vehicles_in_last_step = traci.simulation.getArrivedNumber()
+        departed_vehicles_in_last_step = traci.simulation.getDepartedNumber()
+        current_simulation_time_ms = traci.simulation.getCurrentTime()
+        vehicles_started_to_teleport = traci.simulation.getStartingTeleportNumber()
+        vehicles_ended_teleport = traci.simulation.getEndingTeleportNumber()
+        vehicles_still_expected = traci.simulation.getMinExpectedNumber()
+        traci.trafficlights.setRedYellowGreenState(self.TLSID, action)
+        observation = [arrived_vehicles_in_last_step, departed_vehicles_in_last_step,
+                       current_simulation_time_ms, vehicles_started_to_teleport,
+                       vehicles_ended_teleport, vehicles_still_expected]
+
+        reward = 0
+        avg_edge_values = np.zeros(13)
         for e_id in self.edges:
-            edge_values=[
-            traci.edges.getWaitingTime(e_id),
-            traci.edges.getCO2Emission(e_id),
-            traci.edges.getCOEmission(e_id),
-            traci.edges.getHCEmission(e_id),
-            traci.edges.getPMxEmission(e_id),
-            traci.edges.getNOxEmission(e_id),
-            traci.edges.getFuelConsumption(e_id),
-            traci.edges.getLastStepMeanSpeed(e_id),
-            traci.edges.getLastStepOccupancy(e_id),
-            traci.edges.getLastStepLength(e_id),
-            traci.edges.getTraveltime(e_id),
-            traci.edges.getLastStepVehicleNumber(e_id),
-            traci.edges.getLastStepHaltingNumber(e_id)
+            edge_values = [
+                traci.edge.getWaitingTime(e_id),
+                traci.edge.getCO2Emission(e_id),
+                traci.edge.getCOEmission(e_id),
+                traci.edge.getHCEmission(e_id),
+                traci.edge.getPMxEmission(e_id),
+                traci.edge.getNOxEmission(e_id),
+                traci.edge.getFuelConsumption(e_id),
+                traci.edge.getLastStepMeanSpeed(e_id),
+                traci.edge.getLastStepOccupancy(e_id),
+                traci.edge.getLastStepLength(e_id),
+                traci.edge.getTraveltime(e_id),
+                traci.edge.getLastStepVehicleNumber(e_id),
+                traci.edge.getLastStepHaltingNumber(e_id)
             ]
-            observation.extend(edge_values)
-            
-            
-        
-        reward=1
-        done= False        
-        info= {"info": "none"}
-        
-        return (observation, reward, done, info)
+            #scale using the amount of vehicles
+            if edge_values[11]>0:
+                edge_values[7] /= edge_values[11]
+                edge_values[1] /= edge_values[11]
+                edge_values[0] /= edge_values[11]
+            avg_edge_values = np.add(avg_edge_values, edge_values)
+
+
+        avg_edge_values /= len(self.edges)
+
+        observation.extend(avg_edge_values)
+
+        waitingFactor = -avg_edge_values[0] / 100
+        if waitingFactor == 0:
+            waitingFactor += 1
+        co2_factor = -avg_edge_values[1] / 3000
+        fuel_factor = -avg_edge_values[7]
+        green_factor=7*(action.count("g")+action.count("G"))/self.lanes
+        yellow_factor=-0.5*action.count("y")/self.lanes
+        red_factor=-2*action.count("r")/self.lanes
+        reward += waitingFactor+co2_factor+fuel_factor+green_factor+yellow_factor+red_factor
+
+        done = False
+        info = {"waitingFactor": waitingFactor, "co2_factor":co2_factor,"fuel_factor":fuel_factor,
+                "green_factor":green_factor,"yellow_factor":yellow_factor,"red_factor":red_factor,"total_reward":reward}
+
+
+        return observation, reward, done, info
 
     def reset(self):
         """
@@ -106,16 +151,15 @@ class Env(object):
         Returns:
             observation (object): the initial observation of the space. (Initial reward is assumed to be 0.)
         """
-        
-        traci.start(self.sumoCmd) 
-        lanes= traci.trafficlights.getControlledLanes(self.TLSID)
+
+        traci.start(self.sumoCmd)
+        lanes = traci.trafficlights.getControlledLanes(self.TLSID)
         for lane in lanes:
-            self.edges.append(lane.getEdgeID())
-            
-        lust= import_datasets()
+            self.edges.append(traci.lane.getEdgeID(lane))
+
+        #lust = import_datasets()
         step = 0
         tl = traci.trafficlights
-
 
     def render(self, mode='human', close=False):
         """Renders the environment.
@@ -138,7 +182,7 @@ class Env(object):
             mode (str): the mode to render with
             close (bool): close all open renderings
         """
-        return 
+        return
 
     def close(self):
         """Override in your subclass to perform any necessary cleanup.
@@ -176,35 +220,28 @@ class Env(object):
 
     def __str__(self):
         return '<{} instance>'.format(type(self).__name__)
-        
+
     def import_datasets():
-        csv_dir="..\\code\\"    
-        lust_file_name="dataset-lust-tl-clusters.csv"
-        df= pd.read_csv(csv_dir+lust_file_name)    
-        df['connections']= df['connections'].map(lambda x: ast.literal_eval(x))
+        csv_dir = "..\\code\\"
+        lust_file_name = "dataset-lust-tl-clusters.csv"
+        df = pd.read_csv(csv_dir + lust_file_name)
+        df['connections'] = df['connections'].map(lambda x: ast.literal_eval(x))
         return df
 
     def extract_tl_ids(connection_list):
-        tl_list=[]    
+        tl_list = []
         for connection in connection_list:
-            tl_list.append( connection[2])
+            tl_list.append(connection[2])
         return tl_list
-        
 
-e=Env(2)
+"""
+e = Env(12)
 print e.action_space
+e.reset()
+for i in range(1,1000):
+    result= e.step('rrrrGgrrrrGg')
 
-class Space(object):
-    """Abstract model for a space that is used for the state and action spaces. This class has the
-    exact same API that OpenAI Gym uses so that integrating with it is trivial.
-    """
+    print result[3]
+e.close()
 
-    def sample(self, seed=None):
-        """Uniformly randomly sample a random element of this space.
-        """
-        raise NotImplementedError()
-
-    def contains(self, x):
-        """Return boolean specifying if x is a valid member of this space
-        """
-        raise NotImplementedError()
+"""

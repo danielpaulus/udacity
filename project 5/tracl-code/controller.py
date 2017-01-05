@@ -17,7 +17,7 @@ from rl.memory import SequentialMemory
 from rl.random import OrnsteinUhlenbeckProcess
 from rl.core import Processor
 
-"""portable config"""
+"""portable config
 sys.path.append('e:\\Sumo\\tools')
 os.environ["SUMO_HOME"]="E:\\Sumo"
 sumoBinary = "E:\\Sumo\\bin\\sumo-gui.exe"
@@ -25,20 +25,21 @@ sumoCmd = [sumoBinary, "-c", "E:\\rilsa\\run.sumo.cfg"]
 
 
 
-"""Laptop config"""
+Laptop config
 sumoBinary = "C:\\Program Files (x86)\\DLR\\Sumo\\bin\\sumo.exe"
 sumoCmd = [sumoBinary, "-c", "D:\\verkehr\\RiLSA_example4\\run.sumo.cfg"]
+"""
 
 """interesting functions:
     gui: screenshot()
         trackVehicle()
 """
 import pandas as pd
-import traci
+from traci import simulation, trafficlights, simulationStep, close
 import ast
-traci.start(sumoCmd) 
+start(sumoCmd)
 step = 0
-tl = traci.trafficlights
+tl = trafficlights
 
 
 def import_datasets():
@@ -62,15 +63,15 @@ def extract_tl_ids(connection_list):
 if True:      
     TLSID= "0"
     while step < 1000:
-       traci.simulationStep()
-       arrived_vehicles_in_last_step= traci.simulation.getArrivedNumber()
-       departed_vehicles_in_last_step=traci.simulation.getDepartedNumber()
-       current_simulation_time_ms=traci.simulation.getCurrentTime()
+       simulationStep()
+       arrived_vehicles_in_last_step= simulation.getArrivedNumber()
+       departed_vehicles_in_last_step= simulation.getDepartedNumber()
+       current_simulation_time_ms= simulation.getCurrentTime()
        print arrived_vehicles_in_last_step
-       phase= traci.trafficlights.getPhase(TLSID)   
-       traci.trafficlights.setRedYellowGreenState(TLSID, "grrrrrrrrrrr")
+       phase= trafficlights.getPhase(TLSID)
+       trafficlights.setRedYellowGreenState(TLSID, "grrrrrrrrrrr")
        
-       lanes= traci.trafficlights.getControlledLanes(TLSID)
+       lanes= trafficlights.getControlledLanes(TLSID)
        print len(lanes)
        #for lane in lanes:
        #    print lane
@@ -79,4 +80,4 @@ if True:
         #   traci.trafficlights.setRedYellowGreenState("0", "GrGr")
        step += 1
     
-    traci.close()
+    close()
