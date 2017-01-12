@@ -35,10 +35,28 @@ class SumoEnv(Environment):
     TLSID = "0"
 
 
-    def __init__(self, config):
+    def __init__(self, config, number_of_lights_to_control):
         self.config = config
-        self.action_space = map(''.join, itertools.product("rgy", repeat=12))
+        """
+        problem, action space is obviously 6^(#of traffic lights)+1
+        nof lights | action space size
+        1               6 items
+        2               36 items
+        3               216 items
+        4               1296 items
+        5               7776 items
+        6               46656 items
+        7               279936 items <-- very slow
+        8               1679616 items <-- too slow to realistically use
+        9               10077696 items <-- not working, memory needs to be increased, gpu or multithreading might help
+        10
+        11
+        12
+        """
+        self.number_of_lights_to_control= number_of_lights_to_control
+        self.action_space = map(''.join, itertools.product("rgyGoO", repeat=number_of_lights_to_control))
         self.actionCnt = len(self.action_space)
+        print "Action Space has:{} items".format(self.actionCnt)
         f = open('out.csv', 'w+')
         self.csv_file=csv.writer(f)
 

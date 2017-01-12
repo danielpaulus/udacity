@@ -30,9 +30,10 @@ WinPythonPortableConfigGui = config(
 )
 
 # define the environment
-#env = SumoEnv(LinuxConfig)
-env = SumoEnv(WinPythonPortableConfig)
-#env = SumoEnv(WinPythonPortableConfigGui)
+number_of_lights_to_control=2
+#env = SumoEnv(LinuxConfig,number_of_lights_to_control)
+env = SumoEnv(WinPythonPortableConfig,number_of_lights_to_control)
+#env = SumoEnv(WinPythonPortableConfigGui,number_of_lights_to_control)
 
 stateCnt = env.stateCnt
 actionCnt = env.actionCnt
