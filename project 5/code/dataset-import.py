@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
 """
 Create a dataset from SUMO .net.xml files
-This code is very slow, I guess it is because of the rather large amount 
-of xpath queries I am using. But the code is quite elegant this way and 
-it only needs to run once, so optimizing it would be a waste of time.
 """
 from lxml import etree
 import numpy as np
 import csv
-from multiprocessing.dummy import Pool as ThreadPool
 
 #Determine if a given Lane is part of a roundabout
 def isRoundAbout (r_id):    
@@ -23,8 +19,7 @@ def processIncomingLanes(lane_ids_as_string, row, junction):
 def processInternalLanes(lane_ids_as_string, row, junction):
     processLanes (lane_ids_as_string, row, junction, False)
 
-def appendEmptyValuesToRow(row):
-    row.append(None)            
+def appendEmptyValuesToRow(row):              
     row.append(0)
     row.append(0)
     row.append(0)
@@ -33,38 +28,31 @@ def appendEmptyValuesToRow(row):
     row.append(0)
     row.append(0)
 
-#retrieve statistics for a junction including lanes and traffic lights,     
+#retrieve statistics for lanes of a junction,     
 def processLanes (lane_ids_as_string, row, junction,isIncomingLane):
     #append an empty row if there are no lanes in this junction    
     if (lane_ids_as_string==""):
         appendEmptyValuesToRow(row)
         return
-        
     edge_prios=[]
     edge_types=[]
     lane_lengths=[]
-    lane_speeds=[]
-    connection_info=[]
+    lane_speeds=[]    
     lane_id_list= lane_ids_as_string.split(" ")    
     for l_id in lane_id_list:
         try:            
             lane= lane_table[l_id]
-            edge= lane.getparent()            
+            edge= lane.getparent()
             if isIncomingLane:    
                 edge_types.append( edge.get("type"))
                 edge_prios.append(float(edge.get("priority")))
-            #only check connections that connect with an internal lane
-                #need lane.index and edge.id for that
-            
-                connection_info.append( findConnections (edge.get("id"), lane.get("index")))
-            
-                
             lane_lengths.append(float(lane.get("length")))
             lane_speeds.append(float(lane.get("speed")))
         except:
             print ("error with lane_ids: '{}', l_id:'{}' junction_id:'{}'".format(lane_ids_as_string,
                    l_id, row[0]))
-    row.append(connection_info)    
+            raise
+        
     row.append(np.average(lane_speeds))
     row.append(np.std(lane_speeds))
     row.append(np.average(lane_lengths))
@@ -77,84 +65,91 @@ def processLanes (lane_ids_as_string, row, junction,isIncomingLane):
         row.append(-1)
     row.append(len(lane_id_list))
 
-#only find connections that use an internal lane
-def findConnections (edge_id, lane_index):
-    result=[]
-    if edge_id in connectiontable_to:    
-        con=     connectiontable_to[edge_id]
-        if con.get('tl')!=None:
-            result.append([con.get('from'), con.get('to'), con.get('tl'),con.get('dir'), con.get('state')])
-    
-    if edge_id in connectiontable_from:    
-        con=     connectiontable_from[edge_id]
-        if con.get('tl')!=None:
-            result.append([con.get('from'), con.get('to'), con.get('tl'),con.get('dir'), con.get('state')])
-            
-      
-    via_id="{}_{}".format(edge_id, lane_index)    
-    if via_id in connectiontable_via:
-        con= connectiontable_via[via_id]         
-        if con.get('tl')!=None:
-                result.append([con.get('from'), con.get('to'), con.get('tl'),con.get('dir'), con.get('state')])
-    
-    #if tl isdefined add :
+"""
+Find connections using the global nodes_table and connection_tl table
+we need to find the "tl"-id for a corresponding junction id. 
+Using this id, we can figure out how many traffic lights this junction controlls because
+number of connections with tl == tl_id of junction equals the number of traffic lights
 
-    #[connection.get("tl"),connection.get("dir"),connection.get("state")]
-    #example connection xml:    
-    #<connection from="-31648#1" to="-31648#2" fromLane="0" toLane="0" via=":-5432_0_0" 
-    #tl="-5432" linkIndex="0" dir="s" state="o"/>
-    return result
+"""
+def findConnections (junction_id):    
+           # tl[0].get("id")
+           tl= nodes_table[junction_id]
+           results= map(lambda con: [con.get('from'), con.get('to'), con.get('tl'),con.get('dir'), con.get('state')], connectiontable_tl[tl])
+           return [len(connectiontable_tl[tl]),tl,results]
 
+"""
+Reads the number of traffic light controlled by this junction from xml 
+"""
+def processConnections(row):
+    trafficlightinfo=findConnections(row[0])
+    row.append(trafficlightinfo)
 
-def evaluateJunction(junction_id_tuple):
-    child=junction_id_tuple[1]
-    #print (junction_id_tuple[0])
+"""
+Reads data from xml for one junction
+"""
+def evaluateJunction(junction):    
     row= []        
-    row.append(child.get("id"))
-    #maybe filter junctions of type other than "traffic_light"        
-    row.append(child.get("type"))
-    row.append(child.get("x"))
-    row.append(child.get("y"))
-    row.append(child.get("z"))
+    row.append(junction.get("id"))
+    row.append(junction.get("type"))
+    row.append(junction.get("x"))
+    row.append(junction.get("y"))
+    row.append(junction.get("z"))
     row.append(isRoundAbout(row[0]))
-    processIncomingLanes (child.get("incLanes"), row, child)
-    processInternalLanes (child.get("intLanes"), row, child)
+    processConnections(row)
+    processIncomingLanes (junction.get("incLanes"), row, junction)
+    processInternalLanes (junction.get("intLanes"), row, junction)
     return row
 
-
-# function to be mapped over
-def calculateParallel(numbers, threads):
-    pool = ThreadPool(threads)
-    results = pool.map(evaluateJunction, numbers)
-    pool.close()
-    pool.join()
-    return results
-
-
-def runDataExtraction (xml, output_filename):
-    global tree
-    tree = etree.parse(xml)
-    global findRoundAboundTag
-    findRoundAboundTag= etree.XPath("//net/roundabout[contains(@nodes,$id)]")
+"""
+This method creates some hash tables for fast xml lookup. 
+Using xpath was horribly slow. 
+"""
+def createXmlEntityCaches(tree, nodes_tree):
     
     root = tree.getroot()
-    print "imported filed, found root element {}".format(root.tag)
-    #junctions= tree.xpath("/net/junction")
+    print "imported net.xml-file, found root element {}".format(root.tag)
+    
+    #compile the query for roundabouts for faster execution times
+    global findRoundAboundTag
+    findRoundAboundTag= etree.XPath("//net/roundabout[contains(@nodes,$id)]")
+
     junctions= tree.xpath("/net/junction[@type='traffic_light']")
     
     print ("building connection tables for faster lookup..")
     connections=tree.xpath("/net/connection")
+    
+    #i am not too happy with using global variables, but there is no time left to refactor this script :-)
     global connectiontable_from
     connectiontable_from={}
     global connectiontable_to
-    connectiontable_to={}
-    global connectiontable_via
-    connectiontable_via={}
+    connectiontable_to={}  
+    global node_table
+    
+    global connectiontable_tl
+    connectiontable_tl={}   
     for con in connections:
+        tlid= con.get("tl")
+        if tlid is not None:            
+            tlid= con.get('tl')
+            if tlid not in connectiontable_tl.keys():
+                connectiontable_tl[tlid]=[]
+            connectiontable_tl[tlid].append(con)
+
         connectiontable_from[con.get('from')]=con
-        connectiontable_to[con.get('to')]=con    
-        connectiontable_via[con.get('via')]=con
+        connectiontable_to[con.get('to')]=con  
+    
+    global tlLogicTable
+    tlLogicTable=tree.xpath("/net/tlLogic")
     print ("done!")
+    
+    print ("building node table for faster lookup..")
+    global nodes_table
+    nodes_table={}
+    nodes=nodes_tree.xpath("/nodes/node[@type='traffic_light']")
+    for node in nodes:
+        id= node.get('id')
+        nodes_table[id]=node.get('tl')
     
     print ("building lane table for faster lookup..")
     lanes=tree.xpath("/net/edge/lane")
@@ -165,20 +160,23 @@ def runDataExtraction (xml, output_filename):
     print ("done!")
         
     junction_count= len(junctions)
-    #print enumerate([1,2,3])
+    return junction_count, junctions
+
+def runDataExtraction (xml,node_xml, output_filename):
+    global tree
+    tree = etree.parse(xml)
+    nodes_tree= etree.parse(node_xml)   
+    
+    junction_count, junctions= createXmlEntityCaches(tree, nodes_tree)
+    
     print "processing {} junctions..".format(junction_count)
     
-    #dataset = calculateParallel(enumerate(junctions), 4)
-    
     n=0
-    for pair in enumerate(junctions):
-        dataset.append(evaluateJunction( pair ))
+    for junction in junctions:
+        dataset.append(evaluateJunction( junction ))
         n=n+1 
         if (n%10==0):    
            print ("{}/{} junctions processed..".format(n, junction_count)) 
-            
-        
-    
     
     print ("done processing, writing file {}..".format(output_filename))
     with open(output_filename,"wb") as f:
@@ -187,17 +185,19 @@ def runDataExtraction (xml, output_filename):
     print ("done")
 
 
-xml="D:\\verkehr\TAPASCologne-0.24.0\TAPASCologne-0.24.0\cologne2.net.xml"
+print("processing cologne..")
+xml="E:\\TAPASCologne-0.24.0\\cologne2.net.xml"
+node_xml= "E:\\TAPASCologne-0.24.0\\true.nod.xml"
 output_filename= "dataset-cgn-tl.csv"
 dataset= []
+runDataExtraction(xml,node_xml, output_filename)
 
-print("processing cologne..")
-runDataExtraction(xml, output_filename)
-dataset=[]
+
 print ("processing lust scenario..")
 #xml ="/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne2.net.xml"
-xml ="C:\LuSTScenario\scenario\lust.net.xml"
+xml ="E:\\LuSTScenario\\scenario\\lust.net.xml"
+node_xml= "E:\\LuSTScenario\\scenario\\true.nod.xml"
 output_filename= "dataset-lust-tl.csv"
-runDataExtraction(xml, output_filename)
+dataset=[]
+runDataExtraction(xml,node_xml, output_filename)
 
-#df = pd.DataFrame(list1, columns=('lib', 'qty1', 'qty2'))

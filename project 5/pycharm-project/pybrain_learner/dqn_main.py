@@ -1,7 +1,8 @@
 
 from sumo_environment import SumoEnv
 from dqn_agent import Agent
-
+import signal
+import sys
 
 
 class config():
@@ -30,23 +31,27 @@ WinPythonPortableConfigGui = config(
 
 # define the environment
 #env = SumoEnv(LinuxConfig)
-#env = SumoEnv(WinPythonPortableConfig)
-env = SumoEnv(WinPythonPortableConfigGui)
+env = SumoEnv(WinPythonPortableConfig)
+#env = SumoEnv(WinPythonPortableConfigGui)
 
 stateCnt = env.stateCnt
 actionCnt = env.actionCnt
 
 agent = Agent(stateCnt, actionCnt)
 
+
+def signal_handler(signal, frame):
+    print('You pressed Ctrl+C!')
+    sys.exit(0)
+signal.signal(signal.SIGINT, signal_handler)
+steps=0
 try:
     s = env.reset()
     R = 0
 
     while True:
-        #env.render()
-
         a = agent.act(s)
-
+        steps+=1
         s_, r, done, info = env.step(a)
 
         if done:  # terminal state
@@ -57,7 +62,8 @@ try:
 
         s = s_
         R += r
-
+        if steps%500==0:
+            agent.brain.model.save("cartpole-basic.h5")
         if done:
             break
 
