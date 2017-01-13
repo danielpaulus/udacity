@@ -4,6 +4,7 @@ from scipy import zeros
 import sys
 import os
 import imp
+
 try:
     import traci
 except ImportError:
@@ -20,6 +21,7 @@ import os
 import numpy as np
 import csv
 
+
 class SumoEnv(Environment):
     """ A (terribly simplified) Blackjack game implementation of an environment. """
 
@@ -27,15 +29,14 @@ class SumoEnv(Environment):
     actionCnt = 2
 
     # the number of sensor values the environment produces
-    stateCnt = 5*12
+    stateCnt = 5 * 12
 
     possible_actions = ['r', 'g', 'G', 'y', 'o', 'O', 'u']
     action_space = []
     edges = []
     TLSID = "0"
 
-
-    def __init__(self, config, number_of_lights_to_control):
+    def __init__(self, config, trafficlights):
         self.config = config
         """
         problem, action space is obviously 6^(#of traffic lights)+1
@@ -53,18 +54,17 @@ class SumoEnv(Environment):
         11
         12
         """
-        self.number_of_lights_to_control= number_of_lights_to_control
+        self.number_of_lights_to_control = number_of_lights_to_control
         self.action_space = map(''.join, itertools.product("rgyGoO", repeat=number_of_lights_to_control))
         self.actionCnt = len(self.action_space)
         print "Action Space has:{} items".format(self.actionCnt)
         f = open('out.csv', 'w+')
-        self.csv_file=csv.writer(f)
-
+        self.csv_file = csv.writer(f)
 
     def write_csv_head(self):
-        head=["reward"]
+        head = ["reward"]
         for e_id in self.edges:
-            head.append("waitingtime_"+e_id)
+            head.append("waitingtime_" + e_id)
             head.append("co2_" + e_id)
             head.append("fuelconsumption_" + e_id)
             head.append("laststepmeanspeed_" + e_id)
@@ -74,31 +74,31 @@ class SumoEnv(Environment):
 
     def step(self, a):
         self.performAction(a)
-        observation=self.getSensors()
-        reward= self.computeReward(a,observation)
-        c=[reward]
+        observation = self.getSensors()
+        reward = self.computeReward(a, observation)
+        c = [reward]
         c.extend(observation)
-        #self.csv_file.writerow(c)
+        # self.csv_file.writerow(c)
         return observation, reward, False, {}
-
 
     def computeReward(self, action, observation):
         x = np.matrix(observation.reshape((12, 5)))
-        means= x.mean(0).tolist()[0]
-        r=0
-        a= self.action_space[action]
+        means = x.mean(0).tolist()[0]
+        r = 0
+        a = self.action_space[action]
 
-        if means[0]==0:
-            r+=1
+        if means[0] == 0:
+            r += 1
         else:
-            if means[0]/10<0.2:
-                r+=-.5
+            if means[0] / 10 < 0.2:
+                r += -.5
 
-        if means[0]/10>0.5:
-            r+=-1
-        r+=0.2*a.count("g")
+        if means[0] / 10 > 0.5:
+            r += -1
+        r += 0.2 * a.count("g")
         r += -0.2 * a.count("r")
         return r
+
     def getSensors(self):
         # read global info
         """arrived_vehicles_in_last_step = traci.simulation.getArrivedNumber()
@@ -117,22 +117,22 @@ class SumoEnv(Environment):
                        current_simulation_time_ms, vehicles_started_to_teleport,
                        vehicles_ended_teleport, vehicles_still_expected))
         """
-        observation=[]
+        observation = []
         for e_id in self.edges:
             edge_values = [
                 traci.edge.getWaitingTime(e_id),
                 traci.edge.getCO2Emission(e_id),
-                #traci.edge.getCOEmission(e_id),
-                #traci.edge.getHCEmission(e_id),
-                #traci.edge.getPMxEmission(e_id),
-                #traci.edge.getNOxEmission(e_id),
+                # traci.edge.getCOEmission(e_id),
+                # traci.edge.getHCEmission(e_id),
+                # traci.edge.getPMxEmission(e_id),
+                # traci.edge.getNOxEmission(e_id),
                 traci.edge.getFuelConsumption(e_id),
                 traci.edge.getLastStepMeanSpeed(e_id),
-                #traci.edge.getLastStepOccupancy(e_id),
-                #traci.edge.getLastStepLength(e_id),
-                #traci.edge.getTraveltime(e_id),
+                # traci.edge.getLastStepOccupancy(e_id),
+                # traci.edge.getLastStepLength(e_id),
+                # traci.edge.getTraveltime(e_id),
                 traci.edge.getLastStepVehicleNumber(e_id),
-                #traci.edge.getLastStepHaltingNumber(e_id)
+                # traci.edge.getLastStepHaltingNumber(e_id)
             ]
             observation.extend(edge_values)
 
@@ -147,7 +147,6 @@ class SumoEnv(Environment):
         traci.trafficlights.setRedYellowGreenState(self.TLSID, self.action_space[action])
         traci.simulationStep()
 
-
     def startTraci(self):
         if self.config.sumo_home is not None:
             os.environ["SUMO_HOME"] = self.config.sumo_home
@@ -161,6 +160,6 @@ class SumoEnv(Environment):
     def reset(self):
         """ Most environments will implement this optional method that allows for reinitialization.
         """
-        #traci.close()
+        # traci.close()
         self.startTraci()
         return np.zeros(self.stateCnt)
