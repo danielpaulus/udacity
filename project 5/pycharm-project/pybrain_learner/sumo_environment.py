@@ -1,9 +1,7 @@
 from __future__ import division
-from pybrain.rl.environments.environment import Environment
-from scipy import zeros
 import sys
 import os
-import imp
+
 
 try:
     import traci
@@ -22,44 +20,80 @@ import numpy as np
 import csv
 
 
-class SumoEnv(Environment):
+class Agent_Info(object):
+    pass
+
+
+class SumoEnv():
     """ A (terribly simplified) Blackjack game implementation of an environment. """
 
     # the number of action values the environment accepts
-    actionCnt = 2
+
 
     # the number of sensor values the environment produces
-    stateCnt = 5 * 12
 
-    possible_actions = ['r', 'g', 'G', 'y', 'o', 'O', 'u']
-    action_space = []
+
+    # possible_actions = ['r', 'g', 'G', 'y', 'o', 'O', 'u']
+    action_spaces = [None] * 12  # initialize a list for storing action spaces on demand
     edges = []
-    TLSID = "0"
+    agent_data = {}
 
-    def __init__(self, config, trafficlights):
+    def actionCnt(self,tl_id):
+        agent = self.agent_data[tl_id]
+        return len (self.action_spaces[agent.tl_count])
+
+    def stateCnt(self,tl_id):
+        agent=self.agent_data[tl_id]
+        #this is determined by the getSensors() method
+        #currently its 5 measurements per edge
+        return 5 * len(agent.edges)
+
+    def __init__(self, config, traffic_light_info, dump_csv=False):
         self.config = config
-        """
-        problem, action space is obviously 6^(#of traffic lights)+1
-        nof lights | action space size
-        1               6 items
-        2               36 items
-        3               216 items
-        4               1296 items
-        5               7776 items
-        6               46656 items
-        7               279936 items <-- very slow
-        8               1679616 items <-- too slow to realistically use
-        9               10077696 items <-- not working, memory needs to be increased, gpu or multithreading might help
-        10
-        11
-        12
-        """
-        self.number_of_lights_to_control = number_of_lights_to_control
-        self.action_space = map(''.join, itertools.product("rgyGoO", repeat=number_of_lights_to_control))
-        self.actionCnt = len(self.action_space)
-        print "Action Space has:{} items".format(self.actionCnt)
-        f = open('out.csv', 'w+')
-        self.csv_file = csv.writer(f)
+        self.startTraci()
+        for (count, tl_id) in (traffic_light_info):
+            info = Agent_Info()
+            info.tl_count = count
+            info.tl_id = tl_id
+            info.edges = self.getSumoEdgeInformationFromTraci(tl_id)
+            self.intializeActionSpace(count)
+            self.agent_data[tl_id] = info
+        self.dump_csv = dump_csv
+        if (dump_csv):
+            f = open('out.csv', 'w+')
+            self.csv_file = csv.writer(f)
+            self.write_csv_head()
+
+    def getSumoEdgeInformationFromTraci(self, tl_id):
+        lanes = traci.trafficlights.getControlledLanes(tl_id)
+        result = []
+        for lane in lanes:
+            result.append(traci.lane.getEdgeID(lane))
+        return result
+
+    """
+            problem, action space is obviously 6^(#of traffic lights)+1
+            nof lights | action space size
+            1               6 items
+            2               36 items
+            3               216 items
+            4               1296 items
+            5               7776 items
+            6               46656 items
+            7               279936 items <-- very slow
+            8               1679616 items <-- too slow to realistically use
+            9               10077696 items <-- not working, memory needs to be increased, gpu or multithreading might help
+            10
+            11
+            12
+            """
+
+    def intializeActionSpace(self, size):
+        if self.action_spaces[size] is not None:
+            return
+        space = map(''.join, itertools.product("rgyGoO", repeat=size))
+        self.action_spaces[size] = space
+        print "Created Action Space with:{} items".format(len(space))
 
     def write_csv_head(self):
         head = ["reward"]
@@ -72,20 +106,43 @@ class SumoEnv(Environment):
 
         self.csv_file.writerow(head)
 
-    def step(self, a):
-        self.performAction(a)
-        observation = self.getSensors()
-        reward = self.computeReward(a, observation)
-        c = [reward]
-        c.extend(observation)
-        # self.csv_file.writerow(c)
-        return observation, reward, False, {}
+    def actionResults(self, tl_id):
+        agent_info= self.agent_data[tl_id]
+        return agent_info.observation, agent_info.reward, False, {}
 
-    def computeReward(self, action, observation):
-        x = np.matrix(observation.reshape((12, 5)))
+    def step(self):
+        self.performActions()
+        traci.simulationStep()
+        self.makeObservations()
+        self.computeRewards()
+
+
+    def computeRewards(self):
+        for tl_id, agent in self.agent_data.iteritems():
+            action = self.action_spaces[agent.tl_count][agent.action]
+            agent.reward= self.computeReward(action, agent.observation, agent.edges)
+
+    def makeObservations(self):
+        for tl_id, agent in self.agent_data.iteritems():
+            agent.observation= self.getSensors(agent.tl_id)
+
+    def performActions(self):
+        for tl_id, agent in self.agent_data.iteritems():
+            action_space= self.action_spaces[agent.tl_count]
+            traci.trafficlights.setRedYellowGreenState(tl_id, action_space[agent.action])
+
+
+    def setAction(self, action, tl_id):
+        self.agent_data[tl_id].action=action
+
+
+    def computeReward(self, action, observation, edges, ):
+        rowsinmatrix=len(edges)
+        numberofmeasurements=5
+        x = np.matrix(observation.reshape((rowsinmatrix, numberofmeasurements)))
         means = x.mean(0).tolist()[0]
         r = 0
-        a = self.action_space[action]
+
 
         if means[0] == 0:
             r += 1
@@ -95,12 +152,13 @@ class SumoEnv(Environment):
 
         if means[0] / 10 > 0.5:
             r += -1
-        r += 0.2 * a.count("g")
-        r += -0.2 * a.count("r")
+        r += 0.2 * action.count("g")
+        r += -0.2 * action.count("r")
         return r
 
-    def getSensors(self):
+    def getSensors(self,tl_id):
         # read global info
+        edges=self.agent_data[tl_id].edges
         """arrived_vehicles_in_last_step = traci.simulation.getArrivedNumber()
         departed_vehicles_in_last_step = traci.simulation.getDepartedNumber()
         current_simulation_time_ms = traci.simulation.getCurrentTime()
@@ -118,7 +176,7 @@ class SumoEnv(Environment):
                        vehicles_ended_teleport, vehicles_still_expected))
         """
         observation = []
-        for e_id in self.edges:
+        for e_id in edges:
             edge_values = [
                 traci.edge.getWaitingTime(e_id),
                 traci.edge.getCO2Emission(e_id),
@@ -138,28 +196,15 @@ class SumoEnv(Environment):
 
         return np.array(observation)
 
-    def performAction(self, action):
-        """ perform an action on the world that changes it's internal state (maybe stochastically).
-            :key action: an action that should be executed in the Environment.
-            :type action: by default, this is assumed to be a numpy array of doubles
-        """
 
-        traci.trafficlights.setRedYellowGreenState(self.TLSID, self.action_space[action])
-        traci.simulationStep()
+
+    def close(self):
+        traci.close()
 
     def startTraci(self):
         if self.config.sumo_home is not None:
             os.environ["SUMO_HOME"] = self.config.sumo_home
-
         traci.start(self.config.sumoCmd)
-        lanes = traci.trafficlights.getControlledLanes(self.TLSID)
-        for lane in lanes:
-            self.edges.append(traci.lane.getEdgeID(lane))
-        self.write_csv_head()
 
-    def reset(self):
-        """ Most environments will implement this optional method that allows for reinitialization.
-        """
-        # traci.close()
-        self.startTraci()
-        return np.zeros(self.stateCnt)
+    def emptyState(self, tl_id):
+        return np.zeros(self.stateCnt(tl_id))
