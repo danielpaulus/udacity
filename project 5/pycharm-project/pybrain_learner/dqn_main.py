@@ -4,25 +4,43 @@ My DQN Code is based upon this awesome blog post: https://jaromiru.com/2016/10/0
 """
 
 from sumo_environment import SumoEnv
-from dqn_agent import Agent
+from dqn_agent import Agent, FullDqnAgent
+from reward_functions import simpleRewardFunction
 import signal
 import sys
 import numpy as np
 import pandas as pd
 import ast
-import time
-
-start_time = time.time()
-max_num_steps=500
-if len(sys.argv)==2:
-    param= sys.argv[1]
-    max_num_steps= int(param)
 
 
+import argparse
 
-# scenario="cgn"
-scenario = "lust"
+parser = argparse.ArgumentParser(description='Run a traci controlled sumo simulation running reinforcement learning.')
+parser.add_argument('-i', type=int, help='how many iterations/simulation steps to execute', default=500)
+parser.add_argument('-s', help='which scenario to run. possible values are: {cgn|lust}', default="lust")
+parser.add_argument('-d', type=bool, help='use full dqn if true', default=True)
+parser.add_argument('-c', type=int, help='cluster to use', default=0)
+parser.add_argument('-t',type=int, nargs='+', default=[4])
 
+args = parser.parse_args()
+
+
+max_num_steps=args.i
+
+# set which clusters to use depending on the name of the columns
+possible_clustering_results = ['clusters_maxabs_3dimensions', 'clusters_robust_3dimensions',
+                               'clusters_combined_3dimensions', 'clusters_combined_robust_3dimensions']
+cl = possible_clustering_results[args.c]
+
+# set which traffic light counts/ junction sizes to use
+traffic_light_counts_to_include = args.t
+scenario=args.s
+
+use_full_dqn=args.d
+max_num_steps=args.i
+reward_function= simpleRewardFunction
+
+print "Running simulation({} steps) scenario '{}' for trafficlight counts{}: and clustering result: {}".format(max_num_steps,scenario, traffic_light_counts_to_include, cl)
 
 class config():
     def __init__(self, sumoBinary, sumoCmd, sumo_home=None):
@@ -33,9 +51,13 @@ class config():
 
 LinuxConfig = config(
     "/usr/bin/sumo",
-    ["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/LuSTScenario/scenario/dua.static.sumocfg"]
-    # ["/usr/bin/sumo", "-n", "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne.sumocfg", "--duration-log.statistics", "-l test.log"]
-)
+    None
+ )
+if scenario=="lust":
+    LinuxConfig.sumoCmd=["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/LuSTScenario/scenario/dua.static.sumocfg"]
+else:
+    LinuxConfig.sumoCmd =["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne.sumocfg"]
+
 
 WinPythonPortableConfig = config(
     "E:\\Sumo\\bin\\sumo.exe",
@@ -61,15 +83,8 @@ else:
     cgn_raw_df['trafficlight_count'] = cgn_raw_df['trafficlight_count'].map(lambda x: ast.literal_eval(x))
     df = cgn_raw_df
 
-# set which clusters to use depending on the name of the columns
-possible_clustering_results = ['clusters_maxabs_3dimensions', 'clusters_robust_3dimensions',
-                               'clusters_combined_3dimensions', 'clusters_combined_robust_3dimensions']
-cl = possible_clustering_results[0]
 
-# set which traffic light counts/ junction sizes to use
-traffic_light_counts_to_include = [4,6,7]
 
-print "Running simulation scenario '{}' for trafficlight counts{}: and clustering result: {}".format(scenario, traffic_light_counts_to_include, cl)
 
 # create an extra column only containing the number of traffic lights for the junctinos for easier access
 df['tl_counts'] = df['trafficlight_count'].map(lambda x: x[0])
@@ -100,7 +115,7 @@ traffic_lights = map(lambda x: (x[0], x[1]), filtered_df["trafficlight_count"] )
 # env = SumoEnv(LinuxConfig,number_of_lights_to_control)
 
 
-env = SumoEnv(LinuxConfig, traffic_lights)
+env = SumoEnv(LinuxConfig, traffic_lights, reward_function)
 # env = SumoEnv(WinPythonPortableConfigGui,number_of_lights_to_control)
 
 
@@ -115,10 +130,13 @@ for (cluster_id, tl_ids, count) in clusters:
     iniStates = []
     for i in range(len(tl_ids)):
         iniStates.append(env.emptyState(tl_ids[0]))
-
+    if use_full_dqn:
+        new_agent= FullDqnAgent(stateCnt, actionCnt)
+    else:
+        new_agent = Agent(stateCnt, actionCnt)
     agent_infos.append(
         [
-            Agent(stateCnt, actionCnt),
+            new_agent,
             tl_ids,
             iniStates,
             None
@@ -196,5 +214,11 @@ try:
 finally:
     print "bye bye!"
 
-elapsed_time = time.time() - start_time
-print "elapsed time: {}s".format(elapsed_time)
+
+
+print "Ran simulation scenario '{}' for trafficlight counts{}: and clustering result: {}".format(scenario, traffic_light_counts_to_include, cl)
+if use_full_dqn:
+    print "applied full dqn algorithm"
+else:
+    print "applied simple dqn algorithm"
+print "reward function used:{}".format(reward_function.__name__)

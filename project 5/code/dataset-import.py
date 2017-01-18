@@ -75,8 +75,13 @@ number of connections with tl == tl_id of junction equals the number of traffic 
 def findConnections (junction_id):    
            # tl[0].get("id")
            tl= nodes_table[junction_id]
+           number_of_traffic_lights=0
+           for tllogic in tlLogicTable:
+                if (tllogic.get("id")==tl):               
+                    number_of_traffic_lights=len(tllogic.getchildren()[0].get("state"))
+                    break
            results= map(lambda con: [con.get('from'), con.get('to'), con.get('tl'),con.get('dir'), con.get('state')], connectiontable_tl[tl])
-           return [len(connectiontable_tl[tl]),tl,results]
+           return [number_of_traffic_lights,tl,results]
 
 """
 Reads the number of traffic light controlled by this junction from xml 
@@ -188,6 +193,10 @@ def runDataExtraction (xml,node_xml, output_filename):
 print("processing cologne..")
 xml="E:\\TAPASCologne-0.24.0\\cologne2.net.xml"
 node_xml= "E:\\TAPASCologne-0.24.0\\true.nod.xml"
+
+xml= "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne2.net.xml"
+node_xml="/home/ganjalf/sumo/TAPASCologne-0.24.0/true.nod.xml"
+
 output_filename= "dataset-cgn-tl.csv"
 dataset= []
 runDataExtraction(xml,node_xml, output_filename)
@@ -197,6 +206,9 @@ print ("processing lust scenario..")
 #xml ="/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne2.net.xml"
 xml ="E:\\LuSTScenario\\scenario\\lust.net.xml"
 node_xml= "E:\\LuSTScenario\\scenario\\true.nod.xml"
+
+xml="/home/ganjalf/sumo/LuSTScenario/scenario/lust.net.xml"
+node_xml="/home/ganjalf/sumo/LuSTScenario/scenario/true.nod.xml"
 output_filename= "dataset-lust-tl.csv"
 dataset=[]
 runDataExtraction(xml,node_xml, output_filename)

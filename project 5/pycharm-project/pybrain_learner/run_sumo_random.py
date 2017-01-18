@@ -20,8 +20,8 @@ if len(sys.argv)==2:
 
 
 
-# scenario="cgn"
-scenario = "lust"
+scenario="cgn"
+#scenario = "lust"
 
 
 class config():
@@ -33,8 +33,8 @@ class config():
 
 LinuxConfig = config(
     "/usr/bin/sumo",
-    ["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/LuSTScenario/scenario/dua.static.sumocfg"]
-    # ["/usr/bin/sumo", "-n", "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne.sumocfg", "--duration-log.statistics", "-l test.log"]
+    #["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/LuSTScenario/scenario/dua.static.sumocfg"]
+     ["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne.sumocfg", "--duration-log.statistics"]
 )
 
 WinPythonPortableConfig = config(
@@ -67,7 +67,7 @@ possible_clustering_results = ['clusters_maxabs_3dimensions', 'clusters_robust_3
 cl = possible_clustering_results[0]
 
 # set which traffic light counts/ junction sizes to use
-traffic_light_counts_to_include = [4,6,7]
+traffic_light_counts_to_include = [6]
 
 print "Running simulation scenario '{}' for trafficlight counts{}: and clustering result: {}".format(scenario, traffic_light_counts_to_include, cl)
 
@@ -89,7 +89,7 @@ traffic_lights = map(lambda x: (x[0], x[1]), filtered_df["trafficlight_count"] )
 # env = SumoEnv(LinuxConfig,number_of_lights_to_control)
 
 
-env = SumoEnv(LinuxConfig, traffic_lights)
+env = SumoEnv(LinuxConfig, traffic_lights, lambda x,y,z: x)
 # env = SumoEnv(WinPythonPortableConfigGui,number_of_lights_to_control)
 
 

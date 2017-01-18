@@ -43,14 +43,16 @@ class SumoEnv():
         return len (self.action_spaces[agent.tl_count])
 
     def stateCnt(self,tl_id):
-        agent=self.agent_data[tl_id]
+        #agent=self.agent_data[tl_id]
         #this is determined by the getSensors() method
         #currently its 5 measurements per edge
-        return 5 * len(agent.edges)
+        return 6
 
-    def __init__(self, config, traffic_light_info, dump_csv=False):
+    def __init__(self, config, traffic_light_info,reward_function, dump_csv=False):
+        self.reward_function=reward_function
         self.config = config
         self.startTraci()
+        self.current_step=0
         for (count, tl_id) in (traffic_light_info):
             info = Agent_Info()
             info.tl_count = count
@@ -91,7 +93,7 @@ class SumoEnv():
     def intializeActionSpace(self, size):
         if self.action_spaces[size] is not None:
             return
-        space = map(''.join, itertools.product("rgyGoO", repeat=size))
+        space = map(''.join, itertools.product("rgyGu", repeat=size))
         self.action_spaces[size] = space
         print "Created Action Space with:{} items".format(len(space))
 
@@ -113,6 +115,9 @@ class SumoEnv():
     def step(self):
         self.performActions()
         traci.simulationStep()
+        if self.gui:
+            traci.gui.screenshot("View #0", "../../images/" + str(self.current_step) + ".png")
+        self.current_step+=1
         self.makeObservations()
         self.computeRewards()
 
@@ -120,7 +125,7 @@ class SumoEnv():
     def computeRewards(self):
         for tl_id, agent in self.agent_data.iteritems():
             action = self.action_spaces[agent.tl_count][agent.action]
-            agent.reward= self.computeReward(action, agent.observation, agent.edges)
+            agent.reward= self.reward_function(action, agent.observation, agent.edges)
 
     def makeObservations(self):
         for tl_id, agent in self.agent_data.iteritems():
@@ -136,35 +141,19 @@ class SumoEnv():
         self.agent_data[tl_id].action=action
 
 
-    def computeReward(self, action, observation, edges, ):
-        rowsinmatrix=len(edges)
-        numberofmeasurements=5
-        x = np.matrix(observation.reshape((rowsinmatrix, numberofmeasurements)))
-        means = x.mean(0).tolist()[0]
-        r = 0
 
-
-        if means[0] == 0:
-            r += 1
-        else:
-            if means[0] / 10 < 0.2:
-                r += -.5
-
-        if means[0] / 10 > 0.5:
-            r += -1
-        r += 0.2 * action.count("g")
-        r += -0.2 * action.count("r")
-        return r
 
     def getSensors(self,tl_id):
         # read global info
         edges=self.agent_data[tl_id].edges
         """arrived_vehicles_in_last_step = traci.simulation.getArrivedNumber()
         departed_vehicles_in_last_step = traci.simulation.getDepartedNumber()
-        current_simulation_time_ms = traci.simulation.getCurrentTime()
+        current_simulation_time_ms = traci.simulation.getCurrentTime()"""
+
         vehicles_started_to_teleport = traci.simulation.getStartingTeleportNumber()
-        vehicles_ended_teleport = traci.simulation.getEndingTeleportNumber()
-        vehicles_still_expected = traci.simulation.getMinExpectedNumber()
+
+        """ #vehicles_ended_teleport = traci.simulation.getEndingTeleportNumber()
+        #vehicles_still_expected = traci.simulation.getMinExpectedNumber()
 
         observation = np.array( [arrived_vehicles_in_last_step, departed_vehicles_in_last_step,
                        current_simulation_time_ms, vehicles_started_to_teleport,
@@ -192,7 +181,17 @@ class SumoEnv():
                 traci.edge.getLastStepVehicleNumber(e_id),
                 # traci.edge.getLastStepHaltingNumber(e_id)
             ]
-            observation.extend(edge_values)
+            if edge_values[4]!=0:
+                edge_values[0]/=edge_values[4]
+                edge_values[1] /= edge_values[4]
+                edge_values[2] /= edge_values[4]
+
+            observation.append(edge_values)
+
+        #x = np.matrix(observation.reshape(len(edges), 5))
+        observation = np.matrix(observation).mean(0).tolist()[0]
+
+        observation.append(vehicles_started_to_teleport)
 
         return np.array(observation)
 
@@ -204,6 +203,10 @@ class SumoEnv():
     def startTraci(self):
         if self.config.sumo_home is not None:
             os.environ["SUMO_HOME"] = self.config.sumo_home
+        if "-gui" in self.config.sumoCmd[0]:
+            self.gui=True
+        else:
+            self.gui=False
         traci.start(self.config.sumoCmd)
 
     def emptyState(self, tl_id):

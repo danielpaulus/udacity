@@ -21,8 +21,8 @@ class config():
 
 LinuxConfig = config(
     "/usr/bin/sumo",
-    ["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/LuSTScenario/scenario/dua.static.sumocfg"]
-    # ["/usr/bin/sumo", "-n", "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne.sumocfg", "--duration-log.statistics", "-l test.log"]
+    #["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/LuSTScenario/scenario/dua.static.sumocfg"]
+    ["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne.sumocfg", "--duration-log.statistics"]
 )
 
 WinPythonPortableConfig = config(
@@ -37,7 +37,7 @@ WinPythonPortableConfigGui = config(
     "E:\\Sumo"
 )
 
-env = SumoEnv(LinuxConfig, [])
+env = SumoEnv(LinuxConfig, [], lambda x: x)
 
 for i in range(max_num_steps):
     env.step()

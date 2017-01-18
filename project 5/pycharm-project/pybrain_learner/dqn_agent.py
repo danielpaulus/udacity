@@ -2,6 +2,7 @@ import numpy
 import random
 import math
 from dqn_brain import Brain
+from fulldqn_brain import FullDqnBrain
 from dqn_memory import Memory
 
 MEMORY_CAPACITY = 100000
@@ -70,3 +71,23 @@ class Agent:
             y[i] = t
 
         self.brain.train(x, y)
+
+UPDATE_TARGET_FREQUENCY = 1000
+
+class FullDqnAgent(Agent):
+
+    def __init__(self, stateCnt, actionCnt):
+        self.stateCnt = stateCnt
+        self.actionCnt = actionCnt
+        self.brain = FullDqnBrain(stateCnt, actionCnt)
+        self.memory = Memory(MEMORY_CAPACITY)
+
+    def observe(self, sample):  # in (s, a, r, s_) format
+        self.memory.add(sample)
+
+        if self.steps % UPDATE_TARGET_FREQUENCY == 0:
+            self.brain.updateTargetModel()
+
+        # slowly decrease Epsilon based on our eperience
+        self.steps += 1
+        self.epsilon = MIN_EPSILON + (MAX_EPSILON - MIN_EPSILON) * math.exp(-LAMBDA * self.steps)
