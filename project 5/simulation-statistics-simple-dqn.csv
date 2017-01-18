@@ -1,0 +1,28 @@
+,scenario,tls,cl,Simulation ended at time,Reason,Performance,Duration ms,Real time factor,UPS,Vehicles,Inserted,Running,Waiting,Emergency Stops,Statistics (avg),RouteLength,Duration,WaitingTime,TimeLoss,DepartDelay,simulation_total_steps
+0,lust,"[4,6]",clusters_maxabs_3dimensions,10001.00,TraCI requested termination.,,3927056.0,2.54669,430.362338,0,3662.0,233.0,0.0,14.0,0,10288.26,473.8,45.44,82.08,0.05,10001.0
+1,lust,"[4,6,7]",clusters_maxabs_3dimensions,"501.00 ~10800.00UPS, vehicles TOT 135 ACT 108)",TraCI requested termination.,,1001183.0,0.500408,33.136799,0,135.0,108.0,0.0,0.0,0,6561.17,271.04,14.56,34.43,0.0,501.0
+2,lust,"[4,6,7]",clusters_maxabs_3dimensions,"1001.00 ~12200.00UPS, vehicles TOT 254 ACT 122)",TraCI requested termination.,,1871934.0,0.534741,47.963229,0,254.0,122.0,0.0,3.0,0,9031.78,400.95,31.01,60.4,0.01,1001.0
+3,lust,"[4,6,7]",clusters_maxabs_3dimensions,"1501.00~31000.00UPS, vehicles TOT 366 ACT 124)",TraCI requested termination.,,2499833.0,0.60044,60.822063,0,366.0,124.0,0.0,0.0,0,9029.44,434.42,48.71,83.23,0.01,1501.0
+4,lust,"[4,6,7]",clusters_maxabs_3dimensions,"3001.00~30750.00UPS, vehicles TOT 732 ACT 123)",TraCI requested termination.,,2425358.0,1.23734,141.939458,0,732.0,123.0,0.0,6.0,0,9131.98,483.16,63.29,103.88,0.02,3001.0
+5,lust,[],none,501.00,TraCI requested termination.,,6354.0,78.848,5218.445074,0,135.0,108.0,0.0,0.0,0,6552.43,270.37,14.78,34.42,0.0,501.0
+6,lust,[],none,1501.00,TraCI requested termination.,,13490.0,111.268,11232.468495,0,366.0,126.0,0.0,0.0,0,9068.11,433.22,46.97,80.87,0.01,1501.0
+7,lust,[],none,3001.00,TraCI requested termination.,,26581.0,112.9,12932.696287,0,732.0,120.0,0.0,0.0,0,9130.54,484.18,64.13,104.55,0.02,3001.0
+8,lust,[],none,10001.00,TraCI requested termination.,,89728.0,111.459,18861.559379,0,3662.0,234.0,0.0,1.0,0,10284.5,474.39,45.77,82.35,0.05,10001.0
+9,lust,[],none,1001.00,TraCI requested termination.,,9775.0,102.404,9194.2711,0,254.0,121.0,0.0,0.0,0,9043.33,405.13,32.47,62.13,0.01,1001.0
+10,lust,[],none,4001.00,TraCI requested termination.,,33034.0,121.118,14444.4209,0,1038.0,168.0,0.0,0.0,0,9193.66,495.54,65.74,107.88,0.02,4001.0
+11,lust,[],none,4501.00,TraCI requested termination.,,38603.0,116.597,14753.697899,0,1231.0,186.0,0.0,0.0,0,9348.13,486.42,60.87,101.58,0.02,4501.0
+12,lust,"[4,6,7]",clusters_maxabs_3dimensions,"4001.00~43000.00UPS, vehicles TOT 1038 ACT 172)",TraCI requested termination.,,4636939.0,0.862854,102.408076,0,1038.0,172.0,0.0,10.0,0,9197.96,491.06,62.94,104.63,0.02,4001.0
+13,lust,"[4,6,7]",clusters_maxabs_3dimensions,"3501.00~31500.00UPS, vehicles TOT 857 ACT 126)",TraCI requested termination.,,4213580.0,0.830885,94.976481,0,857.0,126.0,0.0,7.0,0,9143.94,488.05,63.57,104.73,0.02,3501.0
+14,lust,"[4,6,7]",clusters_maxabs_3dimensions,"2001.00~30750.00UPS, vehicles TOT 489 ACT 123)",TraCI requested termination.,,2920488.0,0.685159,73.119972,0,489.0,123.0,0.0,5.0,0,9109.67,474.58,58.15,98.31,0.02,2001.0
+15,lust,"[4,6,7]",random,501.00,TraCI requested termination.,,12527.0,39.9936,2647.321785,0,135.0,107.0,0.0,1.0,0,6440.28,273.82,17.71,38.15,0.0,501.0
+16,lust,"[4,6,7]",random,1001.00,TraCI requested termination.,,17636.0,56.7589,5098.661828,0,254.0,123.0,0.0,1.0,0,9054.34,402.37,32.05,61.27,0.01,1001.0
+17,lust,"[4,6,7]",random,1501.00,TraCI requested termination.,,28023.0,53.5631,5374.906327,0,366.0,123.0,0.0,5.0,0,8989.79,429.8,45.3,79.41,0.01,1501.0
+18,lust,"[4,6,7]",random,2001.00,TraCI requested termination.,,37535.0,53.3102,5720.154522,0,489.0,124.0,0.0,9.0,0,9116.38,478.3,61.71,102.18,0.02,2001.0
+19,lust,"[4,6,7]",random,3001.00,TraCI requested termination.,,50404.0,59.5389,6762.122054,0,732.0,123.0,0.0,7.0,0,9146.44,477.69,59.6,99.34,0.01,3001.0
+20,lust,"[4,6,7]",random,3501.00,TraCI requested termination.,,58150.0,60.2064,6910.077386,0,857.0,124.0,0.0,8.0,0,9161.36,490.8,65.02,106.66,0.02,3501.0
+21,lust,"[4,6,7]",random,4501.00,TraCI requested termination.,,76177.0,59.0861,7450.765979,0,1231.0,186.0,0.0,12.0,0,9356.99,484.34,58.67,99.61,0.02,4501.0
+22,lust,"[4,6,7]",random,4001.00,TraCI requested termination.,,67283.0,59.4652,7052.182572,0,1038.0,170.0,0.0,11.0,0,9187.32,490.7,62.54,104.7,0.02,4001.0
+23,lust,"[4,6,7]",random,10001.00,TraCI requested termination.,,165474.0,60.4385,10186.881323,0,3662.0,231.0,0.0,27.0,0,10294.79,472.7,44.47,81.0,0.05,10001.0
+24,lust,[],none,2001.00,TraCI requested termination.,,13123.0,152.48,16306.713404,0,489.0,125.0,0.0,0.0,0,9109.71,474.12,59.7,99.57,0.02,2001.0
+25,lust,[],none,3501.00,TraCI requested termination.,,23488.0,149.055,17126.362398,0,857.0,127.0,0.0,0.0,0,9164.19,490.83,65.39,106.78,0.02,3501.0
+26,lust,"[4,6]",clusters_maxabs_3dimensions,"4501.00~45750.00UPS, vehicles TOT 1231 ACT 183)",TraCI requested termination.,,3560515.0,1.26414,159.486198,0,1231.0,183.0,0.0,5.0,0,9359.11,486.47,59.54,100.55,0.02,4501.0

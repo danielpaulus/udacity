@@ -43,4 +43,5 @@ for entry in entries:
 
 columns.append("simulation_total_steps")
 df= pd.DataFrame(rows, columns=columns)
-print df
+
+df.to_csv("../../simulation-statistics.csv")

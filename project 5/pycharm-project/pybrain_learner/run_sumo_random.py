@@ -13,7 +13,7 @@ import ast
 import time
 
 start_time = time.time()
-max_num_steps=500
+max_num_steps=10000
 if len(sys.argv)==2:
     param= sys.argv[1]
     max_num_steps= int(param)
@@ -74,18 +74,7 @@ print "Running simulation scenario '{}' for trafficlight counts{}: and clusterin
 # create an extra column only containing the number of traffic lights for the junctinos for easier access
 df['tl_counts'] = df['trafficlight_count'].map(lambda x: x[0])
 
-# filter the dataframe, take only the rows that are of specified size (number of traffic lights)
-clusters = []
-for tl_count in traffic_light_counts_to_include:
-    filtered_df = df[df['tl_counts'] == tl_count]
-    # group by cluster ids
-    g = filtered_df.groupby(filtered_df[cl])
-    # iterate through resulting groups
-    for name, group in g:
-        tl_ids = group['trafficlight_count'].map(lambda x: x[1])
-        # save traffic light ids, grouped by clusters as a tuple and append to the clusters list
-        # tuple is like (cluster_id, [tl_ids],  number of traffic lights)
-        clusters.append((name, list(tl_ids), tl_count))
+
 
 # traffic_lights[0][1][cl]
 filtered_df= df[df['tl_counts'].isin(traffic_light_counts_to_include)]
@@ -104,42 +93,6 @@ env = SumoEnv(LinuxConfig, traffic_lights)
 # env = SumoEnv(WinPythonPortableConfigGui,number_of_lights_to_control)
 
 
-agent_infos = []
-for (cluster_id, tl_ids, count) in clusters:
-
-    stateCnt = env.stateCnt(tl_ids[0])
-    actionCnt = env.actionCnt(tl_ids[0])
-    print "setting up new agent traffic_light_count {} for cluster_id {} using trafficlight_ids:{} with statecnt {} and actioncnt {}".format(count,
-                                                                                                           cluster_id,
-                                                                                                           tl_ids, stateCnt, actionCnt)
-    iniStates = []
-    for i in range(len(tl_ids)):
-        iniStates.append(env.emptyState(tl_ids[0]))
-
-    agent_infos.append(
-        [
-            Agent(stateCnt, actionCnt),
-            tl_ids,
-            iniStates,
-            None
-        ]
-    )
-
-"""
-import signal
-import time
-def signal_handler(signal, frame):
-        print('Manual abort...')
-        global manual_stop
-        manual_stop=True
-
-
-signal.signal(signal.SIGINT, signal_handler)
-global manual_stop
-manual_stop=False
-"""
-
-brainFileName="scen_{}_sizes_{}_cluster_{}_iterations_{}_sumo_brain.h5".format(scenario,traffic_light_counts_to_include,cl,max_num_steps)
 
 
 steps = 0
@@ -148,50 +101,25 @@ try:
 
     while True:
         # let all agents perform their actions
-        for agent_info in agent_infos:
-            agent = agent_info[0]
-            tl_id_list = agent_info[1]
-            state_list = agent_info[2]
-            action_list=[]
-            #set an action for each controlled junction in the agents cluster
-            for i, tl_id in enumerate(tl_id_list):
-                action = agent.act(state_list[i])
-                env.setAction(action, tl_id)
-                action_list.append(action)
 
-            agent_info[3] = action_list
+        traffic_lights
+
+
+        for (count, tl_id) in (traffic_lights):
+            max_action= env.actionCnt(tl_id)
+            action= np.random.random_integers(0,max_action-1)
+            env.setAction(action, tl_id)
+
 
         steps += 1
 
         # advance the simulation by one step
         env.step()
 
-        # let all agents make their observations and learning
-        for agent_info in agent_infos:
-            agent = agent_info[0]
-            tl_id_list = agent_info[1]
-            state_list = agent_info[2]
-            action_list = agent_info[3]
-            new_state_list=[]
-            for i, tl_id in enumerate(tl_id_list):
-                s=state_list[i]
-                a=action_list[i]
-                s_, r, done, info = env.actionResults(tl_id)
-                agent.observe((s, a, r, s_))
-                agent.replay()
-                new_state_list.append(s_)
-            agent_info[2] = new_state_list
-
-        if done:  # terminal state
-            s_ = None
-
         if steps == max_num_steps:
             env.close()
-            agent.brain.model.save(brainFileName)
             break
 
-        if done:
-            break
 
 finally:
     print "bye bye!"

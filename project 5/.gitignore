@@ -9,6 +9,7 @@
 #openoffice temp files
 *.docx#
 *.xlsx#
+*.odt#
 
 # Excel temporary
 ~$*.xls*

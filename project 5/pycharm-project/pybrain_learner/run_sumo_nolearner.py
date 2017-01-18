@@ -1,7 +1,7 @@
 from sumo_environment import SumoEnv
 import sys
 
-max_num_steps=500
+max_num_steps=3500
 if len(sys.argv)==2:
     param= sys.argv[1]
     max_num_steps= int(param)
