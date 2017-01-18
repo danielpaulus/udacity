@@ -2,7 +2,7 @@ import numpy
 import random
 import math
 from dqn_brain import Brain
-from dqn_brain import Memory
+from dqn_memory import Memory
 
 MEMORY_CAPACITY = 100000
 BATCH_SIZE = 64

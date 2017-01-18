@@ -1,0 +1,106 @@
+scenario:lust
+tls:[4,6]
+cl:clusters_maxabs_3dimensions
+Simulation ended at time: 10001.00
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 3927056ms
+ Real time factor: 2.54669
+ UPS: 430.362338
+Vehicles: 
+ Inserted: 3662 (Loaded: 3778)
+ Running: 233
+ Waiting: 0
+Emergency Stops: 14
+Statistics (avg):
+ RouteLength: 10288.26
+ Duration: 473.80
+ WaitingTime: 45.44
+ TimeLoss: 82.08
+ DepartDelay: 0.05
+-->
+scenario:lust
+tls:[4,6,7]
+cl:clusters_maxabs_3dimensions
+Simulation ended at time: 501.00 ~10800.00UPS, vehicles TOT 135 ACT 108)      
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 1001183ms
+ Real time factor: 0.500408
+ UPS: 33.136799
+Vehicles: 
+ Inserted: 135 (Loaded: 163)
+ Running: 108
+ Waiting: 0
+Emergency Stops: 0
+Statistics (avg):
+ RouteLength: 6561.17
+ Duration: 271.04
+ WaitingTime: 14.56
+ TimeLoss: 34.43
+ DepartDelay: 0.00
+-->
+scenario:lust
+tls:[4,6,7]
+cl:clusters_maxabs_3dimensions
+Simulation ended at time: 1001.00 ~12200.00UPS, vehicles TOT 254 ACT 122)     
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 1871934ms
+ Real time factor: 0.534741
+ UPS: 47.963229
+Vehicles: 
+ Inserted: 254 (Loaded: 264)
+ Running: 122
+ Waiting: 0
+Emergency Stops: 3
+Statistics (avg):
+ RouteLength: 9031.78
+ Duration: 400.95
+ WaitingTime: 31.01
+ TimeLoss: 60.40
+ DepartDelay: 0.01
+-->
+scenario:lust
+tls:[4,6,7]
+cl:clusters_maxabs_3dimensions
+Simulation ended at time: 1501.00~31000.00UPS, vehicles TOT 366 ACT 124)      
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 2499833ms
+ Real time factor: 0.60044
+ UPS: 60.822063
+Vehicles: 
+ Inserted: 366 (Loaded: 400)
+ Running: 124
+ Waiting: 0
+Emergency Stops: 0
+Statistics (avg):
+ RouteLength: 9029.44
+ Duration: 434.42
+ WaitingTime: 48.71
+ TimeLoss: 83.23
+ DepartDelay: 0.01
+-->
+scenario:lust
+tls:[4,6,7]
+cl:clusters_maxabs_3dimensions
+Simulation ended at time: 3001.00~30750.00UPS, vehicles TOT 732 ACT 123)      
+Reason: TraCI requested termination.
+Performance: 
+ Duration: 2425358ms
+ Real time factor: 1.23734
+ UPS: 141.939458
+Vehicles: 
+ Inserted: 732 (Loaded: 753)
+ Running: 123
+ Waiting: 0
+Emergency Stops: 6
+Statistics (avg):
+ RouteLength: 9131.98
+ Duration: 483.16
+ WaitingTime: 63.29
+ TimeLoss: 103.88
+ DepartDelay: 0.02
+
+

@@ -6,6 +6,10 @@
 # Word temporary
 ~$*.doc*
 
+#openoffice temp files
+*.docx#
+*.xlsx#
+
 # Excel temporary
 ~$*.xls*
 
