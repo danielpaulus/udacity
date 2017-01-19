@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 """
 Create a dataset from SUMO .net.xml files
+
+1. It is important to run: netconvert -s {scenario}.net.xml --plain-output-prefix
+in the scenarios directory before running this algorithm! 
+netconvert creates a bunch of human readable, additional xml files 
+
+2. You'll need to adapt the path values for the xml files at the bottom of 
+the script 
 """
 from lxml import etree
 import numpy as np
@@ -107,7 +114,7 @@ def evaluateJunction(junction):
     return row
 
 """
-This method creates some hash tables for fast xml lookup. 
+This method creates hash tables for faster searching in the xml data. 
 Using xpath was horribly slow. 
 """
 def createXmlEntityCaches(tree, nodes_tree):
@@ -167,6 +174,12 @@ def createXmlEntityCaches(tree, nodes_tree):
     junction_count= len(junctions)
     return junction_count, junctions
 
+"""
+Run the extraction process for a 
+xml: scenario.net.xml file
+node_xml: a scenario.nod.xml file, that was generated using netconvert
+output_filename: the name of the csv file to export
+"""
 def runDataExtraction (xml,node_xml, output_filename):
     global tree
     tree = etree.parse(xml)
@@ -189,10 +202,15 @@ def runDataExtraction (xml,node_xml, output_filename):
         writer.writerows(dataset)
     print ("done")
 
+"""
+------->Code execution starts here, you might want to adapt the locations of
+the xml and node_xml files :-)
+"""
 
 print("processing cologne..")
-xml="E:\\TAPASCologne-0.24.0\\cologne2.net.xml"
-node_xml= "E:\\TAPASCologne-0.24.0\\true.nod.xml"
+
+#xml="E:\\TAPASCologne-0.24.0\\cologne2.net.xml"
+#node_xml= "E:\\TAPASCologne-0.24.0\\true.nod.xml"
 
 xml= "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne2.net.xml"
 node_xml="/home/ganjalf/sumo/TAPASCologne-0.24.0/true.nod.xml"
@@ -203,9 +221,9 @@ runDataExtraction(xml,node_xml, output_filename)
 
 
 print ("processing lust scenario..")
-#xml ="/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne2.net.xml"
-xml ="E:\\LuSTScenario\\scenario\\lust.net.xml"
-node_xml= "E:\\LuSTScenario\\scenario\\true.nod.xml"
+
+#xml ="E:\\LuSTScenario\\scenario\\lust.net.xml"
+#node_xml= "E:\\LuSTScenario\\scenario\\true.nod.xml"
 
 xml="/home/ganjalf/sumo/LuSTScenario/scenario/lust.net.xml"
 node_xml="/home/ganjalf/sumo/LuSTScenario/scenario/true.nod.xml"
