@@ -18,6 +18,7 @@ lust_nofull_dqn.txt
 *.docx#
 *.xlsx#
 *.odt#
+*.csv#
 
 # Excel temporary
 ~$*.xls*

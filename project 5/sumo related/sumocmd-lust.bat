@@ -1,1 +1,0 @@
-sumo -c e:\lustscenario\scenario\dua.static.sumocfg  --duration-log.statistics --output-prefix MyRun2_
