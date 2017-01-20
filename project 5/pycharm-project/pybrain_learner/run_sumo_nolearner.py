@@ -1,16 +1,23 @@
 from sumo_environment import SumoEnv
 import sys
-
-max_num_steps=3500
-if len(sys.argv)==2:
-    param= sys.argv[1]
-    max_num_steps= int(param)
+import argparse
 
 
 
-# scenario="cgn"
-scenario = "lust"
+parser = argparse.ArgumentParser(description='Run a traci controlled sumo simulation running reinforcement learning.')
+parser.add_argument('-i', type=int, help='how many iterations/simulation steps to execute', default=30000)
+parser.add_argument('-s', help='which scenario to run. possible values are: {cgn|lust}', default="cgn")
 
+
+
+
+args = parser.parse_args()
+max_num_steps=args.i
+scenario=args.s
+gui=""
+
+print "Running simulation({} steps) scenario '{}' for trafficlight counts{}: and clustering result: {}".format(max_num_steps,scenario, "[None]", "None")
+sys.stdout.flush()
 
 class config():
     def __init__(self, sumoBinary, sumoCmd, sumo_home=None):
@@ -20,10 +27,14 @@ class config():
 
 
 LinuxConfig = config(
-    "/usr/bin/sumo",
-    #["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/LuSTScenario/scenario/dua.static.sumocfg"]
-    ["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne.sumocfg", "--duration-log.statistics"]
-)
+    "/usr/bin/sumo{}".format(gui),
+    None
+ )
+if scenario=="lust":
+    LinuxConfig.sumoCmd=["/usr/bin/sumo{}".format(gui), "-c", "/home/ganjalf/sumo/LuSTScenario/scenario/dua.static.sumocfg"]
+else:
+    LinuxConfig.sumoCmd =["/usr/bin/sumo{}".format(gui), "-c", "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne.sumocfg"]
+
 
 WinPythonPortableConfig = config(
     "E:\\Sumo\\bin\\sumo.exe",
@@ -39,7 +50,13 @@ WinPythonPortableConfigGui = config(
 
 env = SumoEnv(LinuxConfig, [], lambda x: x)
 
+
+
 for i in range(max_num_steps):
     env.step()
 
 env.close()
+
+print "Ran simulation scenario '{}' for trafficlight counts{}: and clustering result: {}".format(scenario, "[None]", "None")
+
+print "reward function used:{}".format("none")

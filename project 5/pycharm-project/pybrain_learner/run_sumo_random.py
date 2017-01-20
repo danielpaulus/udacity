@@ -11,18 +11,23 @@ import numpy as np
 import pandas as pd
 import ast
 import time
+import argparse
 
-start_time = time.time()
-max_num_steps=10000
-if len(sys.argv)==2:
-    param= sys.argv[1]
-    max_num_steps= int(param)
+parser = argparse.ArgumentParser(description='Run a traci controlled sumo simulation running reinforcement learning.')
+parser.add_argument('-i', type=int, help='how many iterations/simulation steps to execute', default=30000)
+parser.add_argument('-s', help='which scenario to run. possible values are: {cgn|lust}', default="cgn")
+parser.add_argument('-t',type=int, nargs='+', default=[1,2,3,4,5,6,7])
 
 
 
-scenario="cgn"
-#scenario = "lust"
+args = parser.parse_args()
+max_num_steps=args.i
+scenario=args.s
+traffic_light_counts_to_include = args.t
+gui=""
 
+print "Running simulation({} steps) scenario '{}' for trafficlight counts{}: and clustering result: {}".format(max_num_steps,scenario, traffic_light_counts_to_include, "random")
+sys.stdout.flush()
 
 class config():
     def __init__(self, sumoBinary, sumoCmd, sumo_home=None):
@@ -32,10 +37,14 @@ class config():
 
 
 LinuxConfig = config(
-    "/usr/bin/sumo",
-    #["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/LuSTScenario/scenario/dua.static.sumocfg"]
-     ["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne.sumocfg", "--duration-log.statistics"]
-)
+    "/usr/bin/sumo{}".format(gui),
+    None
+ )
+if scenario=="lust":
+    LinuxConfig.sumoCmd=["/usr/bin/sumo{}".format(gui), "-c", "/home/ganjalf/sumo/LuSTScenario/scenario/dua.static.sumocfg"]
+else:
+    LinuxConfig.sumoCmd =["/usr/bin/sumo{}".format(gui), "-c", "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne.sumocfg"]
+
 
 WinPythonPortableConfig = config(
     "E:\\Sumo\\bin\\sumo.exe",
@@ -48,15 +57,16 @@ WinPythonPortableConfigGui = config(
     ["E:\\Sumo\\bin\\sumo-gui.exe", "-c", "E:\\rilsa\\run.sumo.cfg"],
     "E:\\Sumo"
 )
+
 df = None
 if scenario == "lust":
-    lust_file_name = "../../code/dataset-lust-tl-clusters.csv"
+    lust_file_name = "../../clustering_code/dataset-lust-tl-clusters.csv"
     lust_raw_df = pd.read_csv(lust_file_name)
     lust_raw_df['trafficlight_count'] = lust_raw_df['trafficlight_count'].map(lambda x: ast.literal_eval(x))
     # find tls with 4 lanes and put them into (count, tl_id) tuples
     df = lust_raw_df
 else:
-    cgn_file_name = "../../code/dataset-cgn-tl-clusters.csv"
+    cgn_file_name = "../../clustering_code/dataset-cgn-tl-clusters.csv"
     cgn_raw_df = pd.read_csv(cgn_file_name)
     cgn_raw_df['trafficlight_count'] = cgn_raw_df['trafficlight_count'].map(lambda x: ast.literal_eval(x))
     df = cgn_raw_df
@@ -67,10 +77,10 @@ possible_clustering_results = ['clusters_maxabs_3dimensions', 'clusters_robust_3
 cl = possible_clustering_results[0]
 
 # set which traffic light counts/ junction sizes to use
-traffic_light_counts_to_include = [6]
 
-print "Running simulation scenario '{}' for trafficlight counts{}: and clustering result: {}".format(scenario, traffic_light_counts_to_include, cl)
 
+
+sys.stdout.flush()
 # create an extra column only containing the number of traffic lights for the junctinos for easier access
 df['tl_counts'] = df['trafficlight_count'].map(lambda x: x[0])
 
@@ -124,5 +134,7 @@ try:
 finally:
     print "bye bye!"
 
-elapsed_time = time.time() - start_time
-print "elapsed time: {}s".format(elapsed_time)
+
+print "Ran simulation scenario '{}' for trafficlight counts{}: and clustering result: {}".format(scenario, traffic_light_counts_to_include, "random")
+
+print "reward function used:{}".format("none")

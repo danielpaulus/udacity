@@ -11,16 +11,18 @@ import sys
 import numpy as np
 import pandas as pd
 import ast
-
-
 import argparse
+import json
 
 parser = argparse.ArgumentParser(description='Run a traci controlled sumo simulation running reinforcement learning.')
-parser.add_argument('-i', type=int, help='how many iterations/simulation steps to execute', default=500)
-parser.add_argument('-s', help='which scenario to run. possible values are: {cgn|lust}', default="lust")
-parser.add_argument('-d', type=bool, help='use full dqn if true', default=True)
+parser.add_argument('-i', type=int, help='how many iterations/simulation steps to execute', default=2000)
+parser.add_argument('-s', help='which scenario to run. possible values are: {cgn|lust}', default="cgn")
+parser.add_argument('--fulldqn', dest='fulldqn', action='store_true', help='use full dqn if true')
+
+parser.set_defaults(fulldqn=False)
+
 parser.add_argument('-c', type=int, help='cluster to use', default=0)
-parser.add_argument('-t',type=int, nargs='+', default=[4])
+parser.add_argument('-t',type=int, nargs='+', default=[1,2,3,4,5,6,7])
 
 args = parser.parse_args()
 
@@ -36,9 +38,15 @@ cl = possible_clustering_results[args.c]
 traffic_light_counts_to_include = args.t
 scenario=args.s
 
-use_full_dqn=args.d
+use_full_dqn=args.fulldqn
 max_num_steps=args.i
 reward_function= simpleRewardFunction
+
+enable_gui=False
+gui=""
+if enable_gui:
+    gui="-gui"
+
 
 print "Running simulation({} steps) scenario '{}' for trafficlight counts{}: and clustering result: {}".format(max_num_steps,scenario, traffic_light_counts_to_include, cl)
 
@@ -50,13 +58,13 @@ class config():
 
 
 LinuxConfig = config(
-    "/usr/bin/sumo",
+    "/usr/bin/sumo{}".format(gui),
     None
  )
 if scenario=="lust":
-    LinuxConfig.sumoCmd=["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/LuSTScenario/scenario/dua.static.sumocfg"]
+    LinuxConfig.sumoCmd=["/usr/bin/sumo{}".format(gui), "-c", "/home/ganjalf/sumo/LuSTScenario/scenario/dua.static.sumocfg"]
 else:
-    LinuxConfig.sumoCmd =["/usr/bin/sumo", "-c", "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne.sumocfg"]
+    LinuxConfig.sumoCmd =["/usr/bin/sumo{}".format(gui), "-c", "/home/ganjalf/sumo/TAPASCologne-0.24.0/cologne.sumocfg"]
 
 
 WinPythonPortableConfig = config(
@@ -72,13 +80,13 @@ WinPythonPortableConfigGui = config(
 )
 df = None
 if scenario == "lust":
-    lust_file_name = "../../code/dataset-lust-tl-clusters.csv"
+    lust_file_name = "../../clustering_code/dataset-lust-tl-clusters.csv"
     lust_raw_df = pd.read_csv(lust_file_name)
     lust_raw_df['trafficlight_count'] = lust_raw_df['trafficlight_count'].map(lambda x: ast.literal_eval(x))
     # find tls with 4 lanes and put them into (count, tl_id) tuples
     df = lust_raw_df
 else:
-    cgn_file_name = "../../code/dataset-cgn-tl-clusters.csv"
+    cgn_file_name = "../../clustering_code/dataset-cgn-tl-clusters.csv"
     cgn_raw_df = pd.read_csv(cgn_file_name)
     cgn_raw_df['trafficlight_count'] = cgn_raw_df['trafficlight_count'].map(lambda x: ast.literal_eval(x))
     df = cgn_raw_df
@@ -158,7 +166,9 @@ manual_stop=False
 """
 
 brainFileName="scen_{}_sizes_{}_cluster_{}_iterations_{}_sumo_brain.h5".format(scenario,traffic_light_counts_to_include,cl,max_num_steps)
-
+rewardFileName="scen_{}_sizes_{}_cluster_{}_iterations_{}_sumo_rewards.json".format(scenario,traffic_light_counts_to_include,cl,max_num_steps)
+#is there a better option than using a list for this?
+rewards=[]
 
 steps = 0
 try:
@@ -195,6 +205,7 @@ try:
                 s=state_list[i]
                 a=action_list[i]
                 s_, r, done, info = env.actionResults(tl_id)
+                rewards.append(r)
                 agent.observe((s, a, r, s_))
                 agent.replay()
                 new_state_list.append(s_)
@@ -206,6 +217,9 @@ try:
         if steps == max_num_steps:
             env.close()
             agent.brain.model.save(brainFileName)
+            f = open(rewardFileName, 'w')
+            json.dump(rewards, f)
+            f.close()
             break
 
         if done:

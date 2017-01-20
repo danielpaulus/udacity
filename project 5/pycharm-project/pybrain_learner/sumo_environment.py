@@ -25,18 +25,9 @@ class Agent_Info(object):
 
 
 class SumoEnv():
-    """ A (terribly simplified) Blackjack game implementation of an environment. """
-
-    # the number of action values the environment accepts
-
-
-    # the number of sensor values the environment produces
-
-
     # possible_actions = ['r', 'g', 'G', 'y', 'o', 'O', 'u']
-    action_spaces = [None] * 12  # initialize a list for storing action spaces on demand
-    edges = []
-    agent_data = {}
+
+
 
     def actionCnt(self,tl_id):
         agent = self.agent_data[tl_id]
@@ -49,14 +40,21 @@ class SumoEnv():
         return 6
 
     def __init__(self, config, traffic_light_info,reward_function, dump_csv=False):
+        self.action_spaces = [None] * 12  # initialize a list for storing action spaces on demand
+        self.edges = []
+        self.agent_data = {}
+        self.lanes = []
         self.reward_function=reward_function
         self.config = config
         self.startTraci()
         self.current_step=0
+
         for (count, tl_id) in (traffic_light_info):
             info = Agent_Info()
             info.tl_count = count
             info.tl_id = tl_id
+            info.vehicles_last_step={}
+            info.lanes= traci.trafficlights.getControlledLanes(tl_id)
             info.edges = self.getSumoEdgeInformationFromTraci(tl_id)
             self.intializeActionSpace(count)
             self.agent_data[tl_id] = info
@@ -99,12 +97,7 @@ class SumoEnv():
 
     def write_csv_head(self):
         head = ["reward"]
-        for e_id in self.edges:
-            head.append("waitingtime_" + e_id)
-            head.append("co2_" + e_id)
-            head.append("fuelconsumption_" + e_id)
-            head.append("laststepmeanspeed_" + e_id)
-            head.append("laststepvehiclenumber_" + e_id)
+
 
         self.csv_file.writerow(head)
 
@@ -164,6 +157,24 @@ class SumoEnv():
                        current_simulation_time_ms, vehicles_started_to_teleport,
                        vehicles_ended_teleport, vehicles_still_expected))
         """
+        #lane getLastStepOccupancy
+        #id= self.lanes[0].lane.getLastStepVehicleIDs()
+        lanes = self.agent_data[tl_id].lanes
+        vehicles_last_step = self.agent_data[tl_id].vehicles_last_step
+        emergency_stops=0
+        vehicles={}
+        for lane in lanes:
+            ids= traci.lane.getLastStepVehicleIDs(lane)
+            for id in ids:
+                speed= traci.vehicle.getSpeed(id)
+                vehicles[id]=speed
+                if id in vehicles_last_step:
+                    if vehicles_last_step[id]-speed>4.5:
+                        emergency_stops+=1
+        self.agent_data[tl_id].vehicles_last_step=vehicles
+
+
+
         observation = []
         for e_id in edges:
             edge_values = [
@@ -195,7 +206,44 @@ class SumoEnv():
 
         return np.array(observation)
 
+    def getSensors2(self,tl_id):
+        # read global info
+        edges=self.agent_data[tl_id].edges
 
+        vehicles_started_to_teleport = traci.simulation.getStartingTeleportNumber()
+
+        lanes = self.agent_data[tl_id].lanes
+        vehicles_last_step = self.agent_data[tl_id].vehicles_last_step
+        emergency_stops=0
+        vehicles={}
+        for lane in lanes:
+            ids= traci.lane.getLastStepVehicleIDs(lane)
+            for id in ids:
+                speed= traci.vehicle.getSpeed(id)
+                vehicles[id]=speed
+                if id in vehicles_last_step:
+                    if vehicles_last_step[id]-speed>4.5:
+                        emergency_stops+=1
+        self.agent_data[tl_id].vehicles_last_step=vehicles
+
+
+
+        observation = []
+        for e_id in edges:
+            edge_values = [
+                traci.edge.getLastStepOccupancy(e_id),
+                traci.edge.getLastStepVehicleNumber(e_id),
+                traci.edge.getLastStepHaltingNumber(e_id)
+            ]
+
+            observation.append(edge_values)
+
+        observation = np.matrix(observation).mean(0).tolist()[0]
+
+        observation.append(vehicles_started_to_teleport)
+        observation.append(emergency_stops)
+
+        return np.array(observation)
 
     def close(self):
         traci.close()
