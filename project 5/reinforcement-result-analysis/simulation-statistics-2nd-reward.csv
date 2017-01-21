@@ -1,0 +1,2 @@
+,Collisions,DepartDelay,Duration,Emergency Stops,Real time factor,Reason,RouteLength,Running,Teleports,TimeLoss,UPS,Waiting,WaitingTime,clustering_algorithm,dqn,reward_function,scenario,simulation_steps,traffic_light_counts,vehicles_inserted,vehicles_loaded
+0,"599, Jam",22.17,1643.09,67.0,0.448908,TraCI requested termination.,8228.18,25796.0,23976.0,1097.57,9585.177948,1065.0,957.34,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,10000,"[1, 2, 3, 4]",74080.0,250484.0

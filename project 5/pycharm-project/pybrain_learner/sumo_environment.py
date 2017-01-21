@@ -37,7 +37,7 @@ class SumoEnv():
         #agent=self.agent_data[tl_id]
         #this is determined by the getSensors() method
         #currently its 5 measurements per edge
-        return 6
+        return 5
 
     def __init__(self, config, traffic_light_info,reward_function, dump_csv=False):
         self.action_spaces = [None] * 12  # initialize a list for storing action spaces on demand
@@ -54,6 +54,7 @@ class SumoEnv():
             info.tl_count = count
             info.tl_id = tl_id
             info.vehicles_last_step={}
+            info.last_action=None
             info.lanes= traci.trafficlights.getControlledLanes(tl_id)
             info.edges = self.getSumoEdgeInformationFromTraci(tl_id)
             self.intializeActionSpace(count)
@@ -113,16 +114,21 @@ class SumoEnv():
         self.current_step+=1
         self.makeObservations()
         self.computeRewards()
+        self.storeLastActions()
 
+    def storeLastActions(self):
+        for tl_id, agent in self.agent_data.iteritems():
+            action_space= self.action_spaces[agent.tl_count]
+            agent.last_action=action_space[agent.action]
 
     def computeRewards(self):
         for tl_id, agent in self.agent_data.iteritems():
             action = self.action_spaces[agent.tl_count][agent.action]
-            agent.reward= self.reward_function(action, agent.observation, agent.edges)
+            agent.reward= self.reward_function(action, agent.observation, agent.last_action)
 
     def makeObservations(self):
         for tl_id, agent in self.agent_data.iteritems():
-            agent.observation= self.getSensors(agent.tl_id)
+            agent.observation= self.getSensors2(agent.tl_id)
 
     def performActions(self):
         for tl_id, agent in self.agent_data.iteritems():

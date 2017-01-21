@@ -1,4 +1,7 @@
 #ignore console dump
+pycharm-project/pybrain_learner/*.txt
+pycharm-project/pybrain_learner/*.json
+
 cgn_fulldqn_serious.txt
 cgn_nofull_serious.txt
 cgn_nofull_dqn.txt

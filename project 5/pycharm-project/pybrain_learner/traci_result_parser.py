@@ -72,7 +72,7 @@ def processSections(sections, rows):
         rows.append(row)
 
 
-path = "/home/ganjalf/Documents/project 5 brains/*.txt"
+path = "/home/ganjalf/Documents/project 5 brains- second reward/*.txt"
 rows=[]
 for filename in glob.glob(path):
     with open(filename, 'r') as file:
@@ -85,4 +85,4 @@ for filename in glob.glob(path):
 
 df= pd.DataFrame(rows)
 
-df.to_csv("../../reinforcement-result-analysis/simulation-statistics.csv")
+df.to_csv("../../reinforcement-result-analysis/simulation-statistics-2nd-reward.csv")

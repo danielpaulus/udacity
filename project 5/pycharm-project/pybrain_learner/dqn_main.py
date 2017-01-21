@@ -5,7 +5,7 @@ My DQN Code is based upon this awesome blog post: https://jaromiru.com/2016/10/0
 
 from sumo_environment import SumoEnv
 from dqn_agent import Agent, FullDqnAgent
-from reward_functions import simpleRewardFunction
+from reward_functions import simpleRewardFunction, secondRewardFunction
 import signal
 import sys
 import numpy as np
@@ -16,13 +16,14 @@ import json
 
 parser = argparse.ArgumentParser(description='Run a traci controlled sumo simulation running reinforcement learning.')
 parser.add_argument('-i', type=int, help='how many iterations/simulation steps to execute', default=2000)
-parser.add_argument('-s', help='which scenario to run. possible values are: {cgn|lust}', default="cgn")
+parser.add_argument('-s', help='which scenario to run. possible values are: {cgn|lust}', default="lust")
 parser.add_argument('--fulldqn', dest='fulldqn', action='store_true', help='use full dqn if true')
+parser.add_argument('--enablegui', dest='enablegui', action='store_true', help='enable sumo gui')
 
 parser.set_defaults(fulldqn=False)
-
+parser.set_defaults(enablegui=False)
 parser.add_argument('-c', type=int, help='cluster to use', default=0)
-parser.add_argument('-t',type=int, nargs='+', default=[1,2,3,4,5,6,7])
+parser.add_argument('-t',type=int, nargs='+', default=[4])
 
 args = parser.parse_args()
 
@@ -40,11 +41,11 @@ scenario=args.s
 
 use_full_dqn=args.fulldqn
 max_num_steps=args.i
-reward_function= simpleRewardFunction
+reward_function= secondRewardFunction
 
-enable_gui=False
+
 gui=""
-if enable_gui:
+if args.enablegui:
     gui="-gui"
 
 

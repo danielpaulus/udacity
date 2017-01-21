@@ -21,11 +21,11 @@
       <file leaf-file-name="sumo_environment.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pybrain_learner/sumo_environment.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="236" column="13" lean-forward="true" selection-start-line="236" selection-start-column="13" selection-end-line="236" selection-end-column="13" />
+            <state relative-caret-position="126">
+              <caret line="204" column="0" lean-forward="true" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-                <element signature="e#2137#2799#1" expanded="false" />
+                <element signature="e#2171#2833#1" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -34,8 +34,8 @@
       <file leaf-file-name="reward_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pybrain_learner/reward_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="34" column="62" lean-forward="false" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="62" />
+            <state relative-caret-position="450">
+              <caret line="33" column="24" lean-forward="false" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="24" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -56,18 +56,18 @@
       <file leaf-file-name="_edge.py" pinned="false" current-in-tab="false">
         <entry file="file:///usr/share/sumo/tools/traci/_edge.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3060">
-              <caret line="71" column="54" lean-forward="true" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
+            <state relative-caret-position="201">
+              <caret line="158" column="25" lean-forward="false" selection-start-line="158" selection-start-column="19" selection-end-line="158" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dqn_main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dqn_main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pybrain_learner/dqn_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4104">
-              <caret line="228" column="20" lean-forward="true" selection-start-line="228" selection-start-column="20" selection-end-line="228" selection-end-column="20" />
+            <state relative-caret-position="522">
+              <caret line="47" column="14" lean-forward="false" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
               <folding>
                 <element signature="e#124#160#0" expanded="true" />
               </folding>
@@ -97,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="traci_result_parser.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="traci_result_parser.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pybrain_learner/traci_result_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="87" column="47" lean-forward="false" selection-start-line="87" selection-start-column="47" selection-end-line="87" selection-end-column="47" />
+            <state relative-caret-position="324">
+              <caret line="74" column="63" lean-forward="false" selection-start-line="74" selection-start-column="63" selection-end-line="74" selection-end-column="63" />
               <folding>
                 <element signature="e#119#138#0" expanded="true" />
                 <element signature="e#321#658#0" expanded="false" />
@@ -138,6 +138,7 @@
       <find>traci.cl</find>
       <find>self.agent</find>
       <find>close</find>
+      <find>occupa</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -163,17 +164,18 @@
         <option value="$PROJECT_DIR$/pybrain_learner/dqn_agent.py" />
         <option value="$PROJECT_DIR$/pybrain_learner/run_sumo_nolearner.py" />
         <option value="$PROJECT_DIR$/pybrain_learner/run_sumo_random.py" />
-        <option value="$PROJECT_DIR$/pybrain_learner/sumo_environment.py" />
         <option value="$PROJECT_DIR$/pybrain_learner/reward_functions.py" />
+        <option value="$PROJECT_DIR$/pybrain_learner/sumo_environment.py" />
         <option value="$PROJECT_DIR$/pybrain_learner/dqn_main.py" />
         <option value="$PROJECT_DIR$/pybrain_learner/traci_result_parser.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="1985" />
     <option name="y" value="24" />
-    <option name="width" value="1920" />
-    <option name="height" value="1056" />
+    <option name="width" value="1855" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -575,15 +577,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
+    <frame x="1985" y="24" width="1855" height="1176" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13541667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14016172" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41403866" sideWeight="0.4515625" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36899364" sideWeight="0.45121294" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819584" sideWeight="0.49595687" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41403866" sideWeight="0.5484375" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36899364" sideWeight="0.54878706" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -619,7 +621,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="99" />
+      <option name="time" value="100" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -799,29 +801,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/share/sumo/tools/traci/_edge.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3060">
-          <caret line="71" column="54" lean-forward="true" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/share/sumo/tools/traci/_vehicle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
           <caret line="975" column="70" lean-forward="true" selection-start-line="975" selection-start-column="70" selection-end-line="975" selection-end-column="70" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybrain_learner/reward_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="34" column="62" lean-forward="false" selection-start-line="34" selection-start-column="62" selection-end-line="34" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -841,34 +825,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybrain_learner/traci_result_parser.py">
+    <entry file="file:///usr/share/sumo/tools/traci/_edge.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="87" column="47" lean-forward="false" selection-start-line="87" selection-start-column="47" selection-end-line="87" selection-end-column="47" />
-          <folding>
-            <element signature="e#119#138#0" expanded="true" />
-            <element signature="e#321#658#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="201">
+          <caret line="158" column="25" lean-forward="false" selection-start-line="158" selection-start-column="19" selection-end-line="158" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybrain_learner/sumo_environment.py">
+    <entry file="file://$PROJECT_DIR$/pybrain_learner/reward_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="236" column="13" lean-forward="true" selection-start-line="236" selection-start-column="13" selection-end-line="236" selection-end-column="13" />
+        <state relative-caret-position="450">
+          <caret line="33" column="24" lean-forward="false" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="24" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#2137#2799#1" expanded="false" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pybrain_learner/dqn_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4104">
-          <caret line="228" column="20" lean-forward="true" selection-start-line="228" selection-start-column="20" selection-end-line="228" selection-end-column="20" />
+        <state relative-caret-position="522">
+          <caret line="47" column="14" lean-forward="false" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
           <folding>
             <element signature="e#124#160#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybrain_learner/sumo_environment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="204" column="0" lean-forward="true" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#2171#2833#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybrain_learner/traci_result_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="74" column="63" lean-forward="false" selection-start-line="74" selection-start-column="63" selection-end-line="74" selection-end-column="63" />
+          <folding>
+            <element signature="e#119#138#0" expanded="true" />
+            <element signature="e#321#658#0" expanded="false" />
           </folding>
         </state>
       </provider>

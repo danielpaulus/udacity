@@ -5,7 +5,7 @@ import itertools
 def hamming(str1, str2):
   return sum(itertools.imap(str.__ne__, str1, str2))
 
-def simpleRewardFunction(action, observation, edges):
+def simpleRewardFunction(action, observation, last_action):
     r = 0
 
     #observation[0] is the waiting time over all lanes
@@ -31,7 +31,9 @@ def simpleRewardFunction(action, observation, edges):
         observation.append(vehicles_started_to_teleport)
         observation.append(emergency_stops)
 """
-def secondRewardFunction(last_action, action, observation):
-    reward= -0.5*hamming(last_action, action)-2*observation[4]
+def secondRewardFunction(action, observation,last_action):
+    if (last_action is None):
+        return 0
+    reward= -0.5*hamming(last_action, action)-2*observation[4]+ observation[0]/(observation[2]+0.1)
 
     return  reward
