@@ -1,104 +1,87 @@
 ,Collisions,DepartDelay,Duration,Emergency Stops,Real time factor,Reason,RouteLength,Running,Teleports,TimeLoss,UPS,Waiting,WaitingTime,clustering_algorithm,dqn,reward_function,scenario,simulation_steps,traffic_light_counts,vehicles_inserted,vehicles_loaded
-0,,0.41,420.53,6.0,2.1133,TraCI requested termination.,inf,1340.0,,74.41,1715.669447,0.0,33.96,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,500,"[4, 6, 7]",2154.0,2176.0
-1,1.0,0.46,514.7,9.0,2.10811,TraCI requested termination.,inf,1564.0,1.0,112.89,2179.009623,1.0,60.12,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,1000,"[4, 6, 7]",3423.0,3741.0
-2,1.0,0.51,557.37,43.0,2.08292,TraCI requested termination.,inf,2046.0,1.0,130.6,2551.978307,19.0,71.91,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,1500,"[4, 6, 7]",5093.0,5163.0
-3,4.0,0.91,574.91,34.0,2.10649,TraCI requested termination.,inf,2402.0,4.0,138.36,3018.0909,14.0,75.19,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,2000,"[4, 6, 7]",7001.0,7447.0
-4,4.0,1.53,588.22,49.0,2.0763,TraCI requested termination.,inf,2653.0,4.0,142.42,3344.101838,8.0,76.54,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,2500,"[4, 6, 7]",9063.0,9167.0
-5,5.0,1.65,602.46,64.0,2.07477,TraCI requested termination.,inf,2964.0,5.0,149.21,3698.974524,5.0,80.2,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,3000,"[4, 6, 7]",11350.0,11881.0
-6,3.0,2.36,614.84,79.0,2.04486,TraCI requested termination.,inf,3114.0,3.0,155.68,3971.692395,45.0,83.92,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,3500,"[4, 6, 7]",13685.0,13862.0
-7,"5, Wrong Lane",2.78,624.71,91.0,2.05856,TraCI requested termination.,inf,3562.0,7.0,161.51,4333.196431,25.0,87.19,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,4000,"[4, 6, 7]",16369.0,17030.0
-8,4.0,2.68,629.59,100.0,2.05762,TraCI requested termination.,inf,3768.0,4.0,164.65,4645.706729,82.0,88.46,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,4500,"[4, 6, 7]",19091.0,19347.0
-9,"7, Yield",3.56,639.67,129.0,2.04452,TraCI requested termination.,inf,3983.0,12.0,171.08,4924.543533,143.0,92.87,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,5000,"[4, 6, 7]",21984.0,22885.0
-10,"11, Wrong Lane",4.73,646.74,162.0,2.0498,TraCI requested termination.,inf,4146.0,13.0,173.89,5202.509011,146.0,93.51,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,5500,"[4, 6, 7]",24998.0,25335.0
-11,"3, Yield",7.23,649.99,140.0,2.03883,TraCI requested termination.,inf,4463.0,10.0,176.53,5450.554789,174.0,94.95,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,6000,"[4, 6, 7]",28171.0,29232.0
-12,7.0,8.91,654.4,217.0,2.0289,TraCI requested termination.,inf,4689.0,7.0,179.43,5679.827927,261.0,96.63,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,6500,"[4, 6, 7]",31433.0,32009.0
-13,"9, Jam",7.42,660.67,150.0,2.04597,TraCI requested termination.,inf,4804.0,10.0,183.81,6012.246936,323.0,99.32,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,7000,"[4, 6, 7]",34805.0,36088.0
-14,13.0,12.66,664.89,218.0,2.03435,TraCI requested termination.,inf,4828.0,13.0,186.28,6193.760417,481.0,100.23,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,7500,"[4, 6, 7]",38194.0,39006.0
-15,"7, Yield",14.3,670.1,204.0,2.025,TraCI requested termination.,inf,5007.0,9.0,190.02,6397.96904,579.0,103.14,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,8000,"[4, 6, 7]",41649.0,43332.0
-16,"15, Jam",17.74,675.85,231.0,2.01084,TraCI requested termination.,inf,5078.0,20.0,194.73,6574.844574,547.0,106.16,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,8500,"[4, 6, 7]",45174.0,46204.0
-17,1.0,0.01,269.56,12.0,0.485866,TraCI requested termination.,2842.76,2643.0,1.0,61.04,620.495195,4.0,29.54,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,500,"[1, 2, 3, 4]",2845.0,11748.0
-18,"6, Yield",0.46,450.72,68.0,0.499099,TraCI requested termination.,5070.09,4350.0,7.0,108.63,1221.348065,14.0,56.33,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,1000,"[1, 2, 3, 4]",6119.0,20558.0
-19,"12, Jam",0.69,575.61,104.0,0.493648,TraCI requested termination.,6648.57,5999.0,48.0,151.31,1667.139267,25.0,85.73,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,1500,"[1, 2, 3, 4]",10338.0,38178.0
-20,"67, Jam",1.15,625.26,188.0,0.495183,TraCI requested termination.,7229.66,7538.0,83.0,163.49,2068.693627,39.0,90.27,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,2000,"[1, 2, 3, 4]",15454.0,51988.0
-21,"67, Jam",1.37,663.46,275.0,0.504706,TraCI requested termination.,7595.38,9550.0,214.0,184.25,2577.52183,59.0,106.41,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,2500,"[1, 2, 3, 4]",21255.0,75265.0
-22,"95, Jam",1.65,679.95,503.0,0.51114,TraCI requested termination.,7772.19,9791.0,190.0,183.79,2910.808572,54.0,101.73,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,3000,"[1, 2, 3, 4]",26886.0,90381.0
-23,"159, Jam",1.89,711.49,447.0,0.508108,TraCI requested termination.,8024.58,11147.0,291.0,201.5,3245.229462,123.0,112.37,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,3500,"[1, 2, 3, 4]",32814.0,114398.0
-24,"166, Jam",2.71,760.12,398.0,0.505851,TraCI requested termination.,8039.21,13598.0,849.0,248.81,3807.791094,156.0,157.04,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,4000,"[1, 2, 3, 4]",38795.0,130615.0
-25,,0.01,271.24,,14.2597,TraCI requested termination.,2856.94,2642.0,,62.08,18208.54443,2.0,31.06,None,simple,none,cgn,500,[None],2847.0,11748.0
-26,,0.44,452.94,,18.5059,TraCI requested termination.,5027.3,4379.0,,113.34,45467.878205,15.0,61.12,None,simple,none,cgn,1000,[None],6118.0,20558.0
-27,1.0,0.73,576.12,,18.0467,TraCI requested termination.,6743.63,5750.0,1.0,143.24,59634.02787,18.0,76.95,None,simple,none,cgn,1500,[None],10345.0,38178.0
-28,"2, Wrong Lane",1.19,627.51,,17.2166,TraCI requested termination.,7365.97,7131.0,3.0,158.45,70458.937406,29.0,84.78,None,simple,none,cgn,2000,[None],15464.0,51988.0
-29,"2, Wrong Lane",1.46,655.82,,16.5206,TraCI requested termination.,7668.5,8577.0,3.0,168.25,80170.734607,32.0,89.86,None,simple,none,cgn,2500,[None],21282.0,75265.0
-30,"2, Yield",1.72,681.19,,14.3102,TraCI requested termination.,7890.07,9103.0,8.0,179.17,79053.969768,28.0,95.7,None,simple,none,cgn,3000,[None],26912.0,90381.0
-31,"2, Yield",1.87,706.84,,11.6842,TraCI requested termination.,8103.16,9621.0,11.0,191.14,70982.815759,49.0,102.13,None,simple,none,cgn,3500,[None],32888.0,114398.0
-32,"3, Jam",2.03,724.89,,8.93031,TraCI requested termination.,8195.75,10136.0,17.0,200.57,58434.895374,62.0,106.9,None,simple,none,cgn,4000,[None],38889.0,130615.0
-33,"3, Jam",2.17,742.84,,8.92822,TraCI requested termination.,8311.72,10731.0,21.0,208.93,62336.618187,58.0,111.39,None,simple,none,cgn,4500,[None],44958.0,154828.0
-34,"3, Jam",2.35,760.13,,10.1151,TraCI requested termination.,8421.37,11245.0,29.0,217.89,74560.070711,63.0,116.52,None,simple,none,cgn,5000,[None],51105.0,171691.0
-35,"4, Jam",2.64,774.86,,9.86615,TraCI requested termination.,8508.39,12031.0,57.0,226.25,76594.246749,63.0,121.09,None,simple,none,cgn,5500,[None],57669.0,197938.0
-36,"4, Jam",2.77,789.46,,9.25336,TraCI requested termination.,8570.27,12875.0,94.0,235.29,75413.684368,112.0,125.98,None,simple,none,cgn,6000,[None],64182.0,215578.0
-37,2.0,0.01,273.96,36.0,2.84857,TraCI requested termination.,2886.99,2641.0,2.0,62.21,3636.321768,1.0,29.7,random,simple,none,cgn,500,"[1, 2, 3, 4]",2848.0,11748.0
-38,20.0,0.41,451.67,142.0,2.79185,TraCI requested termination.,5095.0,4343.0,20.0,108.68,6828.896395,9.0,55.75,random,simple,none,cgn,1000,"[1, 2, 3, 4]",6124.0,20558.0
-39,"29, Wrong Lane",0.66,570.61,276.0,2.96948,TraCI requested termination.,6757.19,5704.0,30.0,136.92,9747.823334,16.0,70.11,random,simple,none,cgn,1500,"[1, 2, 3, 4]",10347.0,38178.0
-40,82.0,1.06,621.27,442.0,3.18212,TraCI requested termination.,7374.83,7068.0,82.0,151.44,12918.958504,27.0,77.07,random,simple,none,cgn,2000,"[1, 2, 3, 4]",15466.0,51988.0
-41,122.0,1.38,649.9,617.0,2.9154,TraCI requested termination.,7673.71,8501.0,122.0,161.76,14043.844137,21.0,82.08,random,simple,none,cgn,2500,"[1, 2, 3, 4]",21293.0,75265.0
-42,"185, Yield",1.56,673.77,794.0,3.46386,TraCI requested termination.,7892.55,9025.0,187.0,171.29,18961.904487,31.0,86.92,random,simple,none,cgn,3000,"[1, 2, 3, 4]",26909.0,90381.0
-43,"249, Yield",1.75,699.82,931.0,3.57292,TraCI requested termination.,8115.79,9505.0,257.0,183.08,21488.398983,49.0,93.04,random,simple,none,cgn,3500,"[1, 2, 3, 4]",32888.0,114398.0
-44,"308, Yield",1.84,717.66,1220.0,3.42595,TraCI requested termination.,8197.54,10032.0,319.0,193.06,22216.082175,54.0,97.88,random,simple,none,cgn,4000,"[1, 2, 3, 4]",38897.0,130615.0
-45,2.0,0.41,421.9,12.0,2.09938,TraCI requested termination.,inf,1333.0,2.0,75.53,1701.210343,1.0,35.1,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,500,"[4, 6, 7]",2153.0,2176.0
-46,1.0,0.5,513.24,17.0,2.1063,TraCI requested termination.,inf,1567.0,1.0,112.06,2178.902449,1.0,59.49,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,1000,"[4, 6, 7]",3423.0,3741.0
-47,1.0,0.49,555.8,25.0,2.09284,TraCI requested termination.,inf,2047.0,1.0,128.7,2561.935541,18.0,70.21,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,1500,"[4, 6, 7]",5094.0,5163.0
-48,2.0,0.79,573.41,43.0,2.11659,TraCI requested termination.,inf,2405.0,2.0,136.69,3019.918434,4.0,74.13,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,2000,"[4, 6, 7]",7011.0,7447.0
-49,,1.39,590.34,38.0,2.08474,TraCI requested termination.,inf,2634.0,,143.48,3364.989222,16.0,77.2,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,2500,"[4, 6, 7]",9055.0,9167.0
-50,3.0,1.93,603.67,57.0,2.08114,TraCI requested termination.,inf,2988.0,3.0,150.6,3718.589222,4.0,81.05,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,3000,"[4, 6, 7]",11351.0,11881.0
-51,2.0,1.73,613.91,82.0,2.06425,TraCI requested termination.,inf,3149.0,2.0,155.56,4011.570842,18.0,83.89,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,3500,"[4, 6, 7]",13712.0,13862.0
-52,8.0,2.62,621.84,109.0,2.0644,TraCI requested termination.,inf,3505.0,8.0,159.04,4326.555492,21.0,85.29,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,4000,"[4, 6, 7]",16373.0,17030.0
-53,"7, Wrong Lane",2.07,629.23,131.0,2.0685,TraCI requested termination.,inf,3753.0,9.0,164.05,4667.10979,67.0,88.64,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,4500,"[4, 6, 7]",19106.0,19347.0
-54,"2, Wrong Lane",3.75,637.55,103.0,2.05602,TraCI requested termination.,inf,3962.0,3.0,168.63,4935.378689,141.0,90.76,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,5000,"[4, 6, 7]",21986.0,22885.0
-55,5.0,4.41,645.7,117.0,2.06297,TraCI requested termination.,inf,4158.0,5.0,173.47,5233.228013,149.0,93.16,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,5500,"[4, 6, 7]",24995.0,25335.0
-56,"12, Jam",7.01,649.48,185.0,2.05466,TraCI requested termination.,inf,4404.0,13.0,176.15,5482.509179,167.0,94.74,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,6000,"[4, 6, 7]",28178.0,29232.0
-57,6.0,8.94,654.08,214.0,2.04149,TraCI requested termination.,inf,4593.0,6.0,179.02,5702.478368,291.0,96.38,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,6500,"[4, 6, 7]",31403.0,32009.0
-58,"9, Yield",9.98,660.67,143.0,2.05988,TraCI requested termination.,inf,4834.0,10.0,183.35,6037.060837,308.0,99.06,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,7000,"[4, 6, 7]",34820.0,36088.0
-59,"9, Jam",15.01,667.4,182.0,2.05049,TraCI requested termination.,inf,4863.0,14.0,188.72,6262.451643,517.0,102.32,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,7500,"[4, 6, 7]",38148.0,39006.0
-60,"8, Jam",18.49,672.67,246.0,2.03966,TraCI requested termination.,inf,5020.0,14.0,192.19,6455.897687,520.0,104.75,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,8000,"[4, 6, 7]",41660.0,43332.0
-61,"16, Yield",21.96,673.87,247.0,2.02812,TraCI requested termination.,inf,5014.0,26.0,193.13,6600.070706,681.0,105.12,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,8500,"[4, 6, 7]",45044.0,46204.0
-62,,0.3,254.66,,24.8069,TraCI requested termination.,inf,898.0,,37.38,11689.047336,2.0,11.14,random,simple,none,lust,500,"[4, 6, 7]",1021.0,1278.0
-63,,0.45,421.81,11.0,24.8807,TraCI requested termination.,inf,1339.0,,74.94,20170.610459,1.0,34.2,random,simple,none,lust,1000,"[4, 6, 7]",2153.0,2176.0
-64,,0.41,507.07,12.0,24.3388,TraCI requested termination.,inf,1569.0,,109.81,25035.154286,2.0,58.11,random,simple,none,lust,1500,"[4, 6, 7]",3422.0,3741.0
-65,1.0,0.52,555.22,36.0,20.8805,TraCI requested termination.,inf,2071.0,1.0,129.18,25621.208169,16.0,70.75,random,simple,none,lust,2000,"[4, 6, 7]",5096.0,5163.0
-66,2.0,0.93,574.71,59.0,20.5634,TraCI requested termination.,inf,2385.0,2.0,136.81,29355.373939,14.0,73.85,random,simple,none,lust,2500,"[4, 6, 7]",7001.0,7447.0
-67,7.0,1.28,588.23,69.0,19.4974,TraCI requested termination.,inf,2622.0,7.0,141.87,31420.522616,11.0,75.79,random,simple,none,lust,3000,"[4, 6, 7]",9060.0,9167.0
-68,6.0,1.94,600.7,86.0,19.1613,TraCI requested termination.,inf,3016.0,6.0,148.63,34135.68348,2.0,79.63,random,simple,none,lust,3500,"[4, 6, 7]",11353.0,11881.0
-69,"8, Wrong Lane",2.04,613.39,115.0,18.4979,TraCI requested termination.,inf,3149.0,10.0,154.78,35880.949629,23.0,82.93,random,simple,none,lust,4000,"[4, 6, 7]",13707.0,13862.0
-70,5.0,2.42,621.12,127.0,20.9749,TraCI requested termination.,inf,3519.0,5.0,158.48,43872.109604,36.0,84.91,random,simple,none,lust,4500,"[4, 6, 7]",16358.0,17030.0
-71,7.0,2.91,627.42,184.0,21.4305,TraCI requested termination.,inf,3762.0,7.0,162.72,48217.703196,77.0,86.88,random,simple,none,lust,5000,"[4, 6, 7]",19096.0,19347.0
-72,"15, Wrong Lane",3.09,637.55,201.0,17.0199,TraCI requested termination.,inf,4005.0,16.0,168.3,40885.804541,126.0,90.14,random,simple,none,lust,5500,"[4, 6, 7]",22001.0,22885.0
-73,8.0,4.9,643.66,195.0,15.4695,TraCI requested termination.,inf,4147.0,8.0,171.44,39190.591456,119.0,91.32,random,simple,none,lust,6000,"[4, 6, 7]",25025.0,25335.0
-74,"24, Wrong Lane",5.37,648.9,233.0,16.7822,TraCI requested termination.,inf,4384.0,25.0,175.89,44813.728299,120.0,94.21,random,simple,none,lust,6500,"[4, 6, 7]",28225.0,29232.0
-75,"22, Wrong Lane",6.78,655.82,291.0,19.8732,TraCI requested termination.,inf,4559.0,23.0,179.33,55594.412463,271.0,96.05,random,simple,none,lust,7000,"[4, 6, 7]",31423.0,32009.0
-76,"16, Wrong Lane",9.4,658.67,310.0,19.7389,TraCI requested termination.,inf,4727.0,17.0,182.3,57648.299654,353.0,98.17,random,simple,none,lust,7500,"[4, 6, 7]",34775.0,36088.0
-77,"27, Wrong Lane",12.37,665.39,343.0,17.9521,TraCI requested termination.,inf,4789.0,30.0,186.21,54628.478346,495.0,100.16,random,simple,none,lust,8000,"[4, 6, 7]",38180.0,39006.0
-78,"25, Jam",18.73,671.08,376.0,18.4012,TraCI requested termination.,inf,4901.0,29.0,191.05,57986.503745,598.0,103.78,random,simple,none,lust,8500,"[4, 6, 7]",41614.0,43332.0
-79,,0.22,254.23,,54.1388,TraCI requested termination.,inf,899.0,,38.01,25516.965636,0.0,12.3,None,simple,none,lust,500,[None],1023.0,1278.0
-80,,0.38,417.9,,46.4157,TraCI requested termination.,inf,1341.0,,73.88,37630.575907,0.0,33.81,None,simple,none,lust,1000,[None],2154.0,2176.0
-81,,0.42,511.27,,48.7164,TraCI requested termination.,inf,1568.0,,110.9,50388.789718,0.0,58.9,None,simple,none,lust,1500,[None],3424.0,3741.0
-82,,0.46,556.61,,43.2434,TraCI requested termination.,inf,2041.0,,129.15,52932.444406,16.0,70.71,None,simple,none,lust,2000,[None],5096.0,5163.0
-83,,0.83,572.53,,38.4539,TraCI requested termination.,inf,2411.0,,135.86,54879.503067,7.0,73.64,None,simple,none,lust,2500,[None],7008.0,7447.0
-84,1.0,1.31,587.99,,35.5472,TraCI requested termination.,inf,2671.0,1.0,142.41,57290.300037,10.0,76.7,None,simple,none,lust,3000,[None],9061.0,9167.0
-85,1.0,1.62,601.47,,33.2472,TraCI requested termination.,inf,2967.0,1.0,148.54,59223.95586,6.0,79.71,None,simple,none,lust,3500,[None],11349.0,11881.0
-86,1.0,1.96,612.6,,32.3248,TraCI requested termination.,inf,3195.0,1.0,154.25,62736.837003,6.0,83.08,None,simple,none,lust,4000,[None],13724.0,13862.0
-87,1.0,2.23,621.56,,28.2888,TraCI requested termination.,inf,3525.0,1.0,158.87,59293.484341,22.0,85.39,None,simple,none,lust,4500,[None],16372.0,17030.0
-88,1.0,2.43,628.52,,21.8249,TraCI requested termination.,inf,3734.0,1.0,163.35,49164.535528,59.0,87.68,None,simple,none,lust,5000,[None],19114.0,19347.0
-89,2.0,2.87,638.0,,18.2563,TraCI requested termination.,inf,3991.0,2.0,168.73,43804.191557,113.0,90.89,None,simple,none,lust,5500,[None],22014.0,22885.0
-90,2.0,4.21,645.36,,17.3818,TraCI requested termination.,inf,4141.0,2.0,172.96,44071.835735,98.0,93.11,None,simple,none,lust,6000,[None],25046.0,25335.0
-91,2.0,5.57,649.02,,16.1428,TraCI requested termination.,inf,4356.0,2.0,175.59,43071.305302,160.0,94.4,None,simple,none,lust,6500,[None],28185.0,29232.0
-92,2.0,6.9,654.5,,18.2112,TraCI requested termination.,inf,4564.0,2.0,179.49,50934.727248,242.0,96.72,None,simple,none,lust,7000,[None],31452.0,32009.0
-93,2.0,8.7,659.52,,17.5371,TraCI requested termination.,inf,4727.0,2.0,182.69,51239.600113,365.0,98.5,None,simple,none,lust,7500,[None],34763.0,36088.0
-94,2.0,11.51,664.32,,16.9505,TraCI requested termination.,inf,4764.0,2.0,185.89,51440.504892,532.0,100.42,None,simple,none,lust,8000,[None],38143.0,39006.0
-95,3.0,14.95,668.46,,15.6284,TraCI requested termination.,inf,4990.0,3.0,188.68,49103.939008,545.0,102.06,None,simple,none,lust,8500,[None],41660.0,43332.0
-96,3.0,19.1,672.38,1.0,16.3842,TraCI requested termination.,inf,4994.0,3.0,191.57,53223.834167,587.0,103.68,None,simple,none,lust,9000,[None],45139.0,46204.0
-97,"188, Jam",1.59,680.07,723.0,0.2337,TraCI requested termination.,7722.24,10247.0,303.0,187.55,1344.975278,61.0,104.46,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,3000,"[1, 2, 3, 4, 5, 6, 7]",26879.0,90381.0
-98,,0.53,420.73,10.0,1.79416,TraCI requested termination.,inf,1342.0,,74.0,1455.907657,1.0,33.69,clusters_maxabs_3dimensions,simple,simpleRewardFunction,lust,500,"[4, 6, 7]",2153.0,2176.0
-99,,0.48,510.93,13.0,1.74229,TraCI requested termination.,inf,1584.0,,112.41,1802.046637,0.0,59.62,clusters_maxabs_3dimensions,simple,simpleRewardFunction,lust,1000,"[4, 6, 7]",3424.0,3741.0
-100,2.0,0.5,555.32,30.0,1.74365,TraCI requested termination.,inf,2072.0,2.0,129.57,2140.739669,13.0,70.69,clusters_maxabs_3dimensions,simple,simpleRewardFunction,lust,1500,"[4, 6, 7]",5099.0,5163.0
-101,2.0,0.98,575.16,32.0,1.73787,TraCI requested termination.,inf,2416.0,2.0,138.36,2485.531396,8.0,75.7,clusters_maxabs_3dimensions,simple,simpleRewardFunction,lust,2000,"[4, 6, 7]",7007.0,7447.0
-102,,1.09,592.71,22.0,1.70836,TraCI requested termination.,inf,2661.0,2 (Yield,147.54,2773.163821,11.0,81.44,clusters_maxabs_3dimensions,simple,simpleRewardFunction,lust,2500,"[4, 6, 7]",9060.0,9167.0
+0,,0.41,420.53,6,2.1133,TraCI requested termination.,inf,1340,,74.41,1715.669447,0,33.96,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,500,"[4, 6, 7]",2154,2176
+1,1,0.46,514.7,9,2.10811,TraCI requested termination.,inf,1564,1,112.89,2179.009623,1,60.12,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,1000,"[4, 6, 7]",3423,3741
+2,1,0.51,557.37,43,2.08292,TraCI requested termination.,inf,2046,1,130.6,2551.978307,19,71.91,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,1500,"[4, 6, 7]",5093,5163
+3,4,0.91,574.91,34,2.10649,TraCI requested termination.,inf,2402,4,138.36,3018.0909,14,75.19,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,2000,"[4, 6, 7]",7001,7447
+4,4,1.53,588.22,49,2.0763,TraCI requested termination.,inf,2653,4,142.42,3344.101838,8,76.54,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,2500,"[4, 6, 7]",9063,9167
+5,5,1.65,602.46,64,2.07477,TraCI requested termination.,inf,2964,5,149.21,3698.974524,5,80.2,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,3000,"[4, 6, 7]",11350,11881
+6,3,2.36,614.84,79,2.04486,TraCI requested termination.,inf,3114,3,155.68,3971.692395,45,83.92,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,3500,"[4, 6, 7]",13685,13862
+7,"5, Wrong Lane",2.78,624.71,91,2.05856,TraCI requested termination.,inf,3562,7,161.51,4333.196431,25,87.19,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,4000,"[4, 6, 7]",16369,17030
+8,4,2.68,629.59,100,2.05762,TraCI requested termination.,inf,3768,4,164.65,4645.706729,82,88.46,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,4500,"[4, 6, 7]",19091,19347
+9,"7, Yield",3.56,639.67,129,2.04452,TraCI requested termination.,inf,3983,12,171.08,4924.543533,143,92.87,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,5000,"[4, 6, 7]",21984,22885
+10,"11, Wrong Lane",4.73,646.74,162,2.0498,TraCI requested termination.,inf,4146,13,173.89,5202.509011,146,93.51,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,5500,"[4, 6, 7]",24998,25335
+11,"3, Yield",7.23,649.99,140,2.03883,TraCI requested termination.,inf,4463,10,176.53,5450.554789,174,94.95,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,6000,"[4, 6, 7]",28171,29232
+12,7,8.91,654.4,217,2.0289,TraCI requested termination.,inf,4689,7,179.43,5679.827927,261,96.63,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,6500,"[4, 6, 7]",31433,32009
+13,"9, Jam",7.42,660.67,150,2.04597,TraCI requested termination.,inf,4804,10,183.81,6012.246936,323,99.32,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,7000,"[4, 6, 7]",34805,36088
+14,13,12.66,664.89,218,2.03435,TraCI requested termination.,inf,4828,13,186.28,6193.760417,481,100.23,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,7500,"[4, 6, 7]",38194,39006
+15,"7, Yield",14.3,670.1,204,2.025,TraCI requested termination.,inf,5007,9,190.02,6397.96904,579,103.14,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,8000,"[4, 6, 7]",41649,43332
+16,"15, Jam",17.74,675.85,231,2.01084,TraCI requested termination.,inf,5078,20,194.73,6574.844574,547,106.16,clusters_maxabs_3dimensions,full,simpleRewardFunction,lust,8500,"[4, 6, 7]",45174,46204
+17,1,0.01,269.56,12,0.485866,TraCI requested termination.,2842.76,2643,1,61.04,620.495195,4,29.54,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,500,"[1, 2, 3, 4]",2845,11748
+18,"6, Yield",0.46,450.72,68,0.499099,TraCI requested termination.,5070.09,4350,7,108.63,1221.348065,14,56.33,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,1000,"[1, 2, 3, 4]",6119,20558
+19,"12, Jam",0.69,575.61,104,0.493648,TraCI requested termination.,6648.57,5999,48,151.31,1667.139267,25,85.73,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,1500,"[1, 2, 3, 4]",10338,38178
+20,"67, Jam",1.15,625.26,188,0.495183,TraCI requested termination.,7229.66,7538,83,163.49,2068.693627,39,90.27,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,2000,"[1, 2, 3, 4]",15454,51988
+21,"67, Jam",1.37,663.46,275,0.504706,TraCI requested termination.,7595.38,9550,214,184.25,2577.52183,59,106.41,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,2500,"[1, 2, 3, 4]",21255,75265
+22,"95, Jam",1.65,679.95,503,0.51114,TraCI requested termination.,7772.19,9791,190,183.79,2910.808572,54,101.73,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,3000,"[1, 2, 3, 4]",26886,90381
+23,"159, Jam",1.89,711.49,447,0.508108,TraCI requested termination.,8024.58,11147,291,201.5,3245.229462,123,112.37,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,3500,"[1, 2, 3, 4]",32814,114398
+24,"166, Jam",2.71,760.12,398,0.505851,TraCI requested termination.,8039.21,13598,849,248.81,3807.791094,156,157.04,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,4000,"[1, 2, 3, 4]",38795,130615
+25,,0.01,271.24,,14.2597,TraCI requested termination.,2856.94,2642,,62.08,18208.54443,2,31.06,None,simple,none,cgn,500,[None],2847,11748
+26,,0.44,452.94,,18.5059,TraCI requested termination.,5027.3,4379,,113.34,45467.878205,15,61.12,None,simple,none,cgn,1000,[None],6118,20558
+27,1,0.73,576.12,,18.0467,TraCI requested termination.,6743.63,5750,1,143.24,59634.02787,18,76.95,None,simple,none,cgn,1500,[None],10345,38178
+28,"2, Wrong Lane",1.19,627.51,,17.2166,TraCI requested termination.,7365.97,7131,3,158.45,70458.937406,29,84.78,None,simple,none,cgn,2000,[None],15464,51988
+29,"2, Wrong Lane",1.46,655.82,,16.5206,TraCI requested termination.,7668.5,8577,3,168.25,80170.734607,32,89.86,None,simple,none,cgn,2500,[None],21282,75265
+30,"2, Yield",1.72,681.19,,14.3102,TraCI requested termination.,7890.07,9103,8,179.17,79053.969768,28,95.7,None,simple,none,cgn,3000,[None],26912,90381
+31,"2, Yield",1.87,706.84,,11.6842,TraCI requested termination.,8103.16,9621,11,191.14,70982.815759,49,102.13,None,simple,none,cgn,3500,[None],32888,114398
+32,"3, Jam",2.03,724.89,,8.93031,TraCI requested termination.,8195.75,10136,17,200.57,58434.895374,62,106.9,None,simple,none,cgn,4000,[None],38889,130615
+33,"3, Jam",2.17,742.84,,8.92822,TraCI requested termination.,8311.72,10731,21,208.93,62336.618187,58,111.39,None,simple,none,cgn,4500,[None],44958,154828
+34,"3, Jam",2.35,760.13,,10.1151,TraCI requested termination.,8421.37,11245,29,217.89,74560.070711,63,116.52,None,simple,none,cgn,5000,[None],51105,171691
+35,"4, Jam",2.64,774.86,,9.86615,TraCI requested termination.,8508.39,12031,57,226.25,76594.246749,63,121.09,None,simple,none,cgn,5500,[None],57669,197938
+36,"4, Jam",2.77,789.46,,9.25336,TraCI requested termination.,8570.27,12875,94,235.29,75413.684368,112,125.98,None,simple,none,cgn,6000,[None],64182,215578
+37,2,0.01,273.96,36,2.84857,TraCI requested termination.,2886.99,2641,2,62.21,3636.321768,1,29.7,random,simple,none,cgn,500,"[1, 2, 3, 4]",2848,11748
+38,20,0.41,451.67,142,2.79185,TraCI requested termination.,5095,4343,20,108.68,6828.896395,9,55.75,random,simple,none,cgn,1000,"[1, 2, 3, 4]",6124,20558
+39,"29, Wrong Lane",0.66,570.61,276,2.96948,TraCI requested termination.,6757.19,5704,30,136.92,9747.823334,16,70.11,random,simple,none,cgn,1500,"[1, 2, 3, 4]",10347,38178
+40,82,1.06,621.27,442,3.18212,TraCI requested termination.,7374.83,7068,82,151.44,12918.958504,27,77.07,random,simple,none,cgn,2000,"[1, 2, 3, 4]",15466,51988
+41,122,1.38,649.9,617,2.9154,TraCI requested termination.,7673.71,8501,122,161.76,14043.844137,21,82.08,random,simple,none,cgn,2500,"[1, 2, 3, 4]",21293,75265
+42,"185, Yield",1.56,673.77,794,3.46386,TraCI requested termination.,7892.55,9025,187,171.29,18961.904487,31,86.92,random,simple,none,cgn,3000,"[1, 2, 3, 4]",26909,90381
+43,"249, Yield",1.75,699.82,931,3.57292,TraCI requested termination.,8115.79,9505,257,183.08,21488.398983,49,93.04,random,simple,none,cgn,3500,"[1, 2, 3, 4]",32888,114398
+44,"308, Yield",1.84,717.66,1220,3.42595,TraCI requested termination.,8197.54,10032,319,193.06,22216.082175,54,97.88,random,simple,none,cgn,4000,"[1, 2, 3, 4]",38897,130615
+62,,0.3,254.66,,24.8069,TraCI requested termination.,inf,898,,37.38,11689.047336,2,11.14,random,simple,none,lust,500,"[4, 6, 7]",1021,1278
+63,,0.45,421.81,11,24.8807,TraCI requested termination.,inf,1339,,74.94,20170.610459,1,34.2,random,simple,none,lust,1000,"[4, 6, 7]",2153,2176
+64,,0.41,507.07,12,24.3388,TraCI requested termination.,inf,1569,,109.81,25035.154286,2,58.11,random,simple,none,lust,1500,"[4, 6, 7]",3422,3741
+65,1,0.52,555.22,36,20.8805,TraCI requested termination.,inf,2071,1,129.18,25621.208169,16,70.75,random,simple,none,lust,2000,"[4, 6, 7]",5096,5163
+66,2,0.93,574.71,59,20.5634,TraCI requested termination.,inf,2385,2,136.81,29355.373939,14,73.85,random,simple,none,lust,2500,"[4, 6, 7]",7001,7447
+67,7,1.28,588.23,69,19.4974,TraCI requested termination.,inf,2622,7,141.87,31420.522616,11,75.79,random,simple,none,lust,3000,"[4, 6, 7]",9060,9167
+68,6,1.94,600.7,86,19.1613,TraCI requested termination.,inf,3016,6,148.63,34135.68348,2,79.63,random,simple,none,lust,3500,"[4, 6, 7]",11353,11881
+69,"8, Wrong Lane",2.04,613.39,115,18.4979,TraCI requested termination.,inf,3149,10,154.78,35880.949629,23,82.93,random,simple,none,lust,4000,"[4, 6, 7]",13707,13862
+70,5,2.42,621.12,127,20.9749,TraCI requested termination.,inf,3519,5,158.48,43872.109604,36,84.91,random,simple,none,lust,4500,"[4, 6, 7]",16358,17030
+71,7,2.91,627.42,184,21.4305,TraCI requested termination.,inf,3762,7,162.72,48217.703196,77,86.88,random,simple,none,lust,5000,"[4, 6, 7]",19096,19347
+72,"15, Wrong Lane",3.09,637.55,201,17.0199,TraCI requested termination.,inf,4005,16,168.3,40885.804541,126,90.14,random,simple,none,lust,5500,"[4, 6, 7]",22001,22885
+73,8,4.9,643.66,195,15.4695,TraCI requested termination.,inf,4147,8,171.44,39190.591456,119,91.32,random,simple,none,lust,6000,"[4, 6, 7]",25025,25335
+74,"24, Wrong Lane",5.37,648.9,233,16.7822,TraCI requested termination.,inf,4384,25,175.89,44813.728299,120,94.21,random,simple,none,lust,6500,"[4, 6, 7]",28225,29232
+75,"22, Wrong Lane",6.78,655.82,291,19.8732,TraCI requested termination.,inf,4559,23,179.33,55594.412463,271,96.05,random,simple,none,lust,7000,"[4, 6, 7]",31423,32009
+76,"16, Wrong Lane",9.4,658.67,310,19.7389,TraCI requested termination.,inf,4727,17,182.3,57648.299654,353,98.17,random,simple,none,lust,7500,"[4, 6, 7]",34775,36088
+77,"27, Wrong Lane",12.37,665.39,343,17.9521,TraCI requested termination.,inf,4789,30,186.21,54628.478346,495,100.16,random,simple,none,lust,8000,"[4, 6, 7]",38180,39006
+78,"25, Jam",18.73,671.08,376,18.4012,TraCI requested termination.,inf,4901,29,191.05,57986.503745,598,103.78,random,simple,none,lust,8500,"[4, 6, 7]",41614,43332
+79,,0.22,254.23,,54.1388,TraCI requested termination.,inf,899,,38.01,25516.965636,0,12.3,None,simple,none,lust,500,[None],1023,1278
+80,,0.38,417.9,,46.4157,TraCI requested termination.,inf,1341,,73.88,37630.575907,0,33.81,None,simple,none,lust,1000,[None],2154,2176
+81,,0.42,511.27,,48.7164,TraCI requested termination.,inf,1568,,110.9,50388.789718,0,58.9,None,simple,none,lust,1500,[None],3424,3741
+82,,0.46,556.61,,43.2434,TraCI requested termination.,inf,2041,,129.15,52932.444406,16,70.71,None,simple,none,lust,2000,[None],5096,5163
+83,,0.83,572.53,,38.4539,TraCI requested termination.,inf,2411,,135.86,54879.503067,7,73.64,None,simple,none,lust,2500,[None],7008,7447
+84,1,1.31,587.99,,35.5472,TraCI requested termination.,inf,2671,1,142.41,57290.300037,10,76.7,None,simple,none,lust,3000,[None],9061,9167
+85,1,1.62,601.47,,33.2472,TraCI requested termination.,inf,2967,1,148.54,59223.95586,6,79.71,None,simple,none,lust,3500,[None],11349,11881
+86,1,1.96,612.6,,32.3248,TraCI requested termination.,inf,3195,1,154.25,62736.837003,6,83.08,None,simple,none,lust,4000,[None],13724,13862
+87,1,2.23,621.56,,28.2888,TraCI requested termination.,inf,3525,1,158.87,59293.484341,22,85.39,None,simple,none,lust,4500,[None],16372,17030
+88,1,2.43,628.52,,21.8249,TraCI requested termination.,inf,3734,1,163.35,49164.535528,59,87.68,None,simple,none,lust,5000,[None],19114,19347
+89,2,2.87,638,,18.2563,TraCI requested termination.,inf,3991,2,168.73,43804.191557,113,90.89,None,simple,none,lust,5500,[None],22014,22885
+90,2,4.21,645.36,,17.3818,TraCI requested termination.,inf,4141,2,172.96,44071.835735,98,93.11,None,simple,none,lust,6000,[None],25046,25335
+91,2,5.57,649.02,,16.1428,TraCI requested termination.,inf,4356,2,175.59,43071.305302,160,94.4,None,simple,none,lust,6500,[None],28185,29232
+92,2,6.9,654.5,,18.2112,TraCI requested termination.,inf,4564,2,179.49,50934.727248,242,96.72,None,simple,none,lust,7000,[None],31452,32009
+93,2,8.7,659.52,,17.5371,TraCI requested termination.,inf,4727,2,182.69,51239.600113,365,98.5,None,simple,none,lust,7500,[None],34763,36088
+94,2,11.51,664.32,,16.9505,TraCI requested termination.,inf,4764,2,185.89,51440.504892,532,100.42,None,simple,none,lust,8000,[None],38143,39006
+95,3,14.95,668.46,,15.6284,TraCI requested termination.,inf,4990,3,188.68,49103.939008,545,102.06,None,simple,none,lust,8500,[None],41660,43332
+96,3,19.1,672.38,1,16.3842,TraCI requested termination.,inf,4994,3,191.57,53223.834167,587,103.68,None,simple,none,lust,9000,[None],45139,46204
+97,"188, Jam",1.59,680.07,723,0.2337,TraCI requested termination.,7722.24,10247,303,187.55,1344.975278,61,104.46,clusters_maxabs_3dimensions,full,simpleRewardFunction,cgn,3000,"[1, 2, 3, 4, 5, 6, 7]",26879,90381
+98,,0.53,420.73,10,1.79416,TraCI requested termination.,inf,1342,,74,1455.907657,1,33.69,clusters_maxabs_3dimensions,simple,simpleRewardFunction,lust,500,"[4, 6, 7]",2153,2176
+99,,0.48,510.93,13,1.74229,TraCI requested termination.,inf,1584,,112.41,1802.046637,0,59.62,clusters_maxabs_3dimensions,simple,simpleRewardFunction,lust,1000,"[4, 6, 7]",3424,3741
+100,2,0.5,555.32,30,1.74365,TraCI requested termination.,inf,2072,2,129.57,2140.739669,13,70.69,clusters_maxabs_3dimensions,simple,simpleRewardFunction,lust,1500,"[4, 6, 7]",5099,5163
+101,2,0.98,575.16,32,1.73787,TraCI requested termination.,inf,2416,2,138.36,2485.531396,8,75.7,clusters_maxabs_3dimensions,simple,simpleRewardFunction,lust,2000,"[4, 6, 7]",7007,7447
+102,,1.09,592.71,22,1.70836,TraCI requested termination.,inf,2661,2 (Yield,147.54,2773.163821,11,81.44,clusters_maxabs_3dimensions,simple,simpleRewardFunction,lust,2500,"[4, 6, 7]",9060,9167
