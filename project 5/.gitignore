@@ -7,7 +7,7 @@ cgn_nofull_serious.txt
 cgn_nofull_dqn.txt
 lust_full_dqn.txt
 lust_nofull_dqn.txt
-*.png
+
 
 # neural net state files
 *.h5
