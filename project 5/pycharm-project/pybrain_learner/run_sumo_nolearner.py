@@ -53,7 +53,7 @@ env = SumoEnv(LinuxConfig, [], lambda x: x)
 
 
 for i in range(max_num_steps):
-    env.step()
+    env.simulationStepOnly()
 
 env.close()
 

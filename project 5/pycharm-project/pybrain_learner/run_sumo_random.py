@@ -124,7 +124,7 @@ try:
         steps += 1
 
         # advance the simulation by one step
-        env.step()
+        env.simulationStepNoObservations()
 
         if steps == max_num_steps:
             env.close()

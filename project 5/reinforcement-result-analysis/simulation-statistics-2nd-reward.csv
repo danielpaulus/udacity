@@ -1,15 +1,39 @@
 ,Collisions,DepartDelay,Duration,Emergency Stops,Real time factor,Reason,RouteLength,Running,Teleports,TimeLoss,UPS,Waiting,WaitingTime,clustering_algorithm,dqn,reward_function,scenario,simulation_steps,traffic_light_counts,vehicles_inserted,vehicles_loaded
-0,"599, Jam",22.17,1643.09,67.0,0.448908,TraCI requested termination.,8228.18,25796.0,23976.0,1097.57,9585.177948,1065.0,957.34,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,10000,"[1, 2, 3, 4]",74080.0,250484.0
-1,,0.01,259.57,28.0,0.155689,TraCI requested termination.,2735.5,2662.0,,56.78,198.995572,2.0,25.89,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,500,"[1, 2, 3, 4, 5, 6, 7]",2847.0,11748.0
-2,"16, Yield",0.41,438.58,78.0,0.201213,TraCI requested termination.,4822.81,4623.0,90.0,109.55,501.106371,24.0,59.39,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,1000,"[1, 2, 3, 4, 5, 6, 7]",6109.0,20558.0
-3,"33, Jam",0.68,561.56,92.0,0.20766,TraCI requested termination.,6278.04,6941.0,327.0,158.37,742.697232,59.0,98.17,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,1500,"[1, 2, 3, 4, 5, 6, 7]",10304.0,38178.0
-4,"91, Jam",1.22,648.95,90.0,0.207437,TraCI requested termination.,6964.91,9830.0,775.0,212.74,1001.539241,108.0,144.25,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,2000,"[1, 2, 3, 4, 5, 6, 7]",15385.0,51988.0
-5,"821, Jam",62.66,3150.5,454.0,0.165813,TraCI requested termination.,8263.18,23121.0,50366.0,2570.22,4392.819035,704.0,2361.73,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,15000,"[1, 2, 3, 4, 5, 6, 7]",74441.0,250484.0
-6,"2, Yield",0.02,262.92,10.0,0.453939,TraCI requested termination.,2775.72,2665.0,5.0,58.12,580.914818,6.0,27.71,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,500,"[1, 2, 3, 4]",2843.0,11748.0
-7,"10, Jam",0.43,443.76,9.0,0.486579,TraCI requested termination.,4815.6,4742.0,123.0,118.7,1231.539763,29.0,70.36,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,1000,"[1, 2, 3, 4]",6104.0,20558.0
-8,"29, Jam",0.9,568.29,17.0,0.631967,TraCI requested termination.,6263.03,6850.0,285.0,164.36,2259.662653,59.0,102.75,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,1500,"[1, 2, 3, 4]",10304.0,38178.0
-9,"75, Jam",1.34,649.48,22.0,0.669634,TraCI requested termination.,6838.97,9571.0,683.0,215.43,3207.195371,104.0,146.03,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,2000,"[1, 2, 3, 4]",15389.0,51988.0
-10,"45, Jam",1.58,673.67,26.0,0.643784,TraCI requested termination.,7290.46,11571.0,798.0,212.03,3661.369929,127.0,137.9,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,2500,"[1, 2, 3, 4]",21187.0,75265.0
-11,"128, Jam",2.08,717.08,71.0,0.683513,TraCI requested termination.,7158.93,15217.0,1859.0,263.34,5019.209434,213.0,189.15,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,3000,"[1, 2, 3, 4]",26727.0,90381.0
-12,"105, Jam",2.78,766.78,45.0,0.671082,TraCI requested termination.,7243.73,17808.0,2754.0,305.43,5803.852905,424.0,226.38,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,3500,"[1, 2, 3, 4]",32513.0,114398.0
-13,"198, Jam",3.41,806.87,34.0,0.675635,TraCI requested termination.,7490.8,20415.0,3256.0,331.26,6617.922068,566.0,246.85,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,4000,"[1, 2, 3, 4]",38385.0,130615.0
+0,"2, Yield",1.72,681.19,,17.9067,TraCI requested termination.,7890.07,9103.0,8.0,179.17,98921.827544,28.0,95.7,None,simple,none,cgn,3000,[None],26912.0,90381.0
+1,"3, Jam",2.03,724.89,,16.1009,TraCI requested termination.,8195.75,10136.0,17.0,200.57,105354.99163,62.0,106.9,None,simple,none,cgn,4000,[None],38889.0,130615.0
+2,"739, Jam",4.27,931.9,2631.0,13.2317,TraCI requested termination.,9299.22,897.0,1060.0,321.98,96078.952417,0.0,180.48,random,simple,none,cgn,10000,"[1, 2, 3, 4]",75145.0,250484.0
+3,"2, Wrong Lane",1.46,655.82,,19.4227,TraCI requested termination.,7668.5,8577.0,3.0,168.25,94254.016945,32.0,89.86,None,simple,none,cgn,2500,[None],21282.0,75265.0
+4,"170, Yield",1.49,673.38,840.0,13.6666,TraCI requested termination.,7878.9,9043.0,173.0,171.65,74849.348319,28.0,87.2,random,simple,none,cgn,3000,"[1, 2, 3, 4]",26912.0,90381.0
+5,2.0,0.01,274.38,30.0,12.9702,TraCI requested termination.,2889.37,2638.0,2.0,61.64,16558.314133,2.0,29.23,random,simple,none,cgn,500,"[1, 2, 3, 4]",2847.0,11748.0
+6,"1336, Jam",4.13,985.85,4920.0,17.3248,TraCI requested termination.,9422.21,0.0,1888.0,366.01,85557.702657,0.0,214.57,random,simple,none,cgn,15000,"[1, 2, 3, 4, 5, 6, 7]",75145.0,250484.0
+7,"2, Yield",1.87,706.84,,17.11,TraCI requested termination.,8103.16,9621.0,11.0,191.14,103945.1072,49.0,102.13,None,simple,none,cgn,3500,[None],32888.0,114398.0
+8,"240, Yield",1.68,699.72,1040.0,13.5921,TraCI requested termination.,8110.61,9519.0,243.0,183.22,81776.477622,35.0,93.05,random,simple,none,cgn,3500,"[1, 2, 3, 4]",32902.0,114398.0
+9,75.0,1.11,621.54,388.0,15.4093,TraCI requested termination.,7375.49,7068.0,75.0,151.66,62581.039143,26.0,76.95,random,simple,none,cgn,2000,"[1, 2, 3, 4]",15467.0,51988.0
+10,"5, Jam",4.29,998.59,,25.769,TraCI requested termination.,9422.21,0.0,392.0,378.73,128903.64246,0.0,229.15,None,simple,none,cgn,15000,[None],75145.0,250484.0
+11,"5, Jam",4.27,941.03,,17.1903,TraCI requested termination.,9285.92,1034.0,350.0,332.26,126773.326687,0.0,193.24,None,simple,none,cgn,10000,[None],75145.0,250484.0
+12,"2, Wrong Lane",1.19,627.51,,20.0284,TraCI requested termination.,7365.97,7131.0,3.0,158.45,81966.309004,29.0,84.78,None,simple,none,cgn,2000,[None],15464.0,51988.0
+13,53.0,0.66,566.29,531.0,13.1031,TraCI requested termination.,6789.88,5642.0,53.0,131.19,42741.333706,24.0,64.1,random,simple,none,cgn,1500,"[1, 2, 3, 4, 5, 6, 7]",10339.0,38178.0
+14,"317, Yield",1.9,716.6,1221.0,12.5113,TraCI requested termination.,8204.07,10058.0,325.0,191.64,81043.72856,52.0,97.24,random,simple,none,cgn,4000,"[1, 2, 3, 4]",38899.0,130615.0
+15,"599, Jam",22.17,1643.09,67.0,0.448908,TraCI requested termination.,8228.18,25796.0,23976.0,1097.57,9585.177948,1065.0,957.34,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,10000,"[1, 2, 3, 4]",74080.0,250484.0
+16,,0.01,271.24,,16.0587,TraCI requested termination.,2856.94,2642.0,,62.08,20505.769601,2.0,31.06,None,simple,none,cgn,500,[None],2847.0,11748.0
+17,23.0,0.44,447.99,261.0,11.959,TraCI requested termination.,5109.78,4320.0,23.0,103.4,29115.575308,13.0,50.04,random,simple,none,cgn,1000,"[1, 2, 3, 4, 5, 6, 7]",6120.0,20558.0
+18,2.0,0.01,272.98,65.0,11.264,TraCI requested termination.,2913.8,2634.0,2.0,59.68,14356.041189,0.0,26.56,random,simple,none,cgn,500,"[1, 2, 3, 4, 5, 6, 7]",2849.0,11748.0
+19,,0.44,452.94,,20.3113,TraCI requested termination.,5027.3,4379.0,,113.34,49903.678753,15.0,61.12,None,simple,none,cgn,1000,[None],6118.0,20558.0
+20,25.0,0.39,450.32,141.0,17.0971,TraCI requested termination.,5074.12,4346.0,25.0,108.18,41812.41033,11.0,55.27,random,simple,none,cgn,1000,"[1, 2, 3, 4]",6122.0,20558.0
+21,,0.01,259.57,28.0,0.155689,TraCI requested termination.,2735.5,2662.0,,56.78,198.995572,2.0,25.89,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,500,"[1, 2, 3, 4, 5, 6, 7]",2847.0,11748.0
+22,"16, Yield",0.41,438.58,78.0,0.201213,TraCI requested termination.,4822.81,4623.0,90.0,109.55,501.106371,24.0,59.39,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,1000,"[1, 2, 3, 4, 5, 6, 7]",6109.0,20558.0
+23,"33, Jam",0.68,561.56,92.0,0.20766,TraCI requested termination.,6278.04,6941.0,327.0,158.37,742.697232,59.0,98.17,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,1500,"[1, 2, 3, 4, 5, 6, 7]",10304.0,38178.0
+24,"91, Jam",1.22,648.95,90.0,0.207437,TraCI requested termination.,6964.91,9830.0,775.0,212.74,1001.539241,108.0,144.25,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,2000,"[1, 2, 3, 4, 5, 6, 7]",15385.0,51988.0
+25,38.0,0.71,570.2,262.0,16.3339,TraCI requested termination.,6771.43,5697.0,38.0,136.17,53576.473149,20.0,69.5,random,simple,none,cgn,1500,"[1, 2, 3, 4]",10343.0,38178.0
+26,"821, Jam",62.66,3150.5,454.0,0.165813,TraCI requested termination.,8263.18,23121.0,50366.0,2570.22,4392.819035,704.0,2361.73,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,15000,"[1, 2, 3, 4, 5, 6, 7]",74441.0,250484.0
+27,"2, Yield",0.02,262.92,10.0,0.453939,TraCI requested termination.,2775.72,2665.0,5.0,58.12,580.914818,6.0,27.71,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,500,"[1, 2, 3, 4]",2843.0,11748.0
+28,"10, Jam",0.43,443.76,9.0,0.486579,TraCI requested termination.,4815.6,4742.0,123.0,118.7,1231.539763,29.0,70.36,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,1000,"[1, 2, 3, 4]",6104.0,20558.0
+29,"29, Jam",0.9,568.29,17.0,0.631967,TraCI requested termination.,6263.03,6850.0,285.0,164.36,2259.662653,59.0,102.75,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,1500,"[1, 2, 3, 4]",10304.0,38178.0
+30,"75, Jam",1.34,649.48,22.0,0.669634,TraCI requested termination.,6838.97,9571.0,683.0,215.43,3207.195371,104.0,146.03,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,2000,"[1, 2, 3, 4]",15389.0,51988.0
+31,"45, Jam",1.58,673.67,26.0,0.643784,TraCI requested termination.,7290.46,11571.0,798.0,212.03,3661.369929,127.0,137.9,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,2500,"[1, 2, 3, 4]",21187.0,75265.0
+32,"128, Jam",2.08,717.08,71.0,0.683513,TraCI requested termination.,7158.93,15217.0,1859.0,263.34,5019.209434,213.0,189.15,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,3000,"[1, 2, 3, 4]",26727.0,90381.0
+33,"105, Jam",2.78,766.78,45.0,0.671082,TraCI requested termination.,7243.73,17808.0,2754.0,305.43,5803.852905,424.0,226.38,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,3500,"[1, 2, 3, 4]",32513.0,114398.0
+34,"198, Jam",3.41,806.87,34.0,0.675635,TraCI requested termination.,7490.8,20415.0,3256.0,331.26,6617.922068,566.0,246.85,clusters_maxabs_3dimensions,full,secondRewardFunction,cgn,4000,"[1, 2, 3, 4]",38385.0,130615.0
+35,1.0,0.73,576.12,,22.1501,TraCI requested termination.,6743.63,5750.0,1.0,143.24,73193.256106,18.0,76.95,None,simple,none,cgn,1500,[None],10345.0,38178.0
+36,135.0,1.36,649.5,602.0,15.3356,TraCI requested termination.,7678.7,8501.0,135.0,161.14,73793.800779,24.0,82.0,random,simple,none,cgn,2500,"[1, 2, 3, 4]",21290.0,75265.0
+37,141.0,1.01,616.19,847.0,12.8755,TraCI requested termination.,7377.04,7024.0,141.0,145.84,51936.285486,30.0,71.12,random,simple,none,cgn,2000,"[1, 2, 3, 4, 5, 6, 7]",15463.0,51988.0

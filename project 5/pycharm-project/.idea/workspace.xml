@@ -21,8 +21,8 @@
       <file leaf-file-name="sumo_environment.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pybrain_learner/sumo_environment.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="204" column="0" lean-forward="true" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+            <state relative-caret-position="456">
+              <caret line="110" column="0" lean-forward="true" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
                 <element signature="e#2171#2833#1" expanded="false" />
@@ -88,8 +88,8 @@
       <file leaf-file-name="run_sumo_nolearner.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pybrain_learner/run_sumo_nolearner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+            <state relative-caret-position="828">
+              <caret line="46" column="69" lean-forward="true" selection-start-line="46" selection-start-column="69" selection-end-line="46" selection-end-column="69" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -113,8 +113,8 @@
       <file leaf-file-name="run_sumo_random.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pybrain_learner/run_sumo_random.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="24" column="15" lean-forward="true" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
+            <state relative-caret-position="1926">
+              <caret line="114" column="22" lean-forward="true" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
               <folding>
                 <element signature="e#124#160#0" expanded="true" />
               </folding>
@@ -162,12 +162,12 @@
         <option value="$PROJECT_DIR$/pybrain_learner/fulldqn_brain.py" />
         <option value="$PROJECT_DIR$/pybrain_learner/reward_function.py" />
         <option value="$PROJECT_DIR$/pybrain_learner/dqn_agent.py" />
-        <option value="$PROJECT_DIR$/pybrain_learner/run_sumo_nolearner.py" />
-        <option value="$PROJECT_DIR$/pybrain_learner/run_sumo_random.py" />
         <option value="$PROJECT_DIR$/pybrain_learner/reward_functions.py" />
-        <option value="$PROJECT_DIR$/pybrain_learner/sumo_environment.py" />
         <option value="$PROJECT_DIR$/pybrain_learner/dqn_main.py" />
         <option value="$PROJECT_DIR$/pybrain_learner/traci_result_parser.py" />
+        <option value="$PROJECT_DIR$/pybrain_learner/run_sumo_nolearner.py" />
+        <option value="$PROJECT_DIR$/pybrain_learner/sumo_environment.py" />
+        <option value="$PROJECT_DIR$/pybrain_learner/run_sumo_random.py" />
       </list>
     </option>
   </component>
@@ -482,9 +482,9 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.traci_result_parser" />
-        <item index="1" class="java.lang.String" itemvalue="Python.dqn_main" />
+        <item index="1" class="java.lang.String" itemvalue="Python.run_sumo_random" />
         <item index="2" class="java.lang.String" itemvalue="Python.run_sumo_nolearner" />
-        <item index="3" class="java.lang.String" itemvalue="Python.run_sumo_random" />
+        <item index="3" class="java.lang.String" itemvalue="Python.dqn_main" />
         <item index="4" class="java.lang.String" itemvalue="Python.keypreaa" />
       </list>
     </recent_temporary>
@@ -515,7 +515,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1985" y="24" width="1855" height="1176" extended-state="7" />
+    <frame x="1985" y="24" width="1855" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14016172" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -523,7 +523,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36899364" sideWeight="0.45121294" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819584" sideWeight="0.49595687" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36899364" sideWeight="0.54878706" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36899364" sideWeight="0.54878706" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -711,26 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pybrain_learner/run_sumo_nolearner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pybrain_learner/run_sumo_random.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" column="15" lean-forward="true" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
-          <folding>
-            <element signature="e#124#160#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/share/sumo/tools/traci/_lane.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2052">
@@ -793,11 +773,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pybrain_learner/sumo_environment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="204" column="0" lean-forward="true" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+        <state relative-caret-position="456">
+          <caret line="110" column="0" lean-forward="true" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
             <element signature="e#2171#2833#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybrain_learner/run_sumo_nolearner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="46" column="69" lean-forward="true" selection-start-line="46" selection-start-column="69" selection-end-line="46" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pybrain_learner/run_sumo_random.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1926">
+          <caret line="114" column="22" lean-forward="true" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
+          <folding>
+            <element signature="e#124#160#0" expanded="true" />
           </folding>
         </state>
       </provider>

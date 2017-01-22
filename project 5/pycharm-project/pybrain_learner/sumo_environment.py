@@ -106,6 +106,13 @@ class SumoEnv():
         agent_info= self.agent_data[tl_id]
         return agent_info.observation, agent_info.reward, False, {}
 
+    def simulationStepOnly(self):
+        traci.simulationStep()
+
+    def simulationStepNoObservations(self):
+        self.performActions()
+        traci.simulationStep()
+
     def step(self):
         self.performActions()
         traci.simulationStep()
